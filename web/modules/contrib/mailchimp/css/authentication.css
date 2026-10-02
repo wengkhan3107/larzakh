@@ -1,0 +1,33 @@
+.mailchimp-admin-oauth-settings .button {
+  margin-left: 0;
+}
+
+.mailchimp-admin-oauth-settings .spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+}
+
+.mailchimp-admin-oauth-settings.pending .spinner {
+  display: inline-block;
+}
+
+.mailchimp-admin-oauth-settings .spinner::after {
+  display: block;
+  width: 13px;
+  height: 13px;
+  margin: 4px;
+  border: 2px solid #ccc;
+  animation: spinner 1.2s linear infinite;
+  border-radius: 50%;
+  content: " ";
+  border-color: #ccc transparent #fff transparent;
+}
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

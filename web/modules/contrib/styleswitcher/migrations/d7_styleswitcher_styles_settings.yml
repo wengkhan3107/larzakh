@@ -1,0 +1,15 @@
+id: d7_styleswitcher_styles_settings
+label: Styles settings
+migration_tags:
+  - Drupal 7
+  - Configuration
+source:
+  plugin: variable
+  variables:
+    - styleswitcher_styles_settings
+  source_module: styleswitcher
+process:
+  settings: styleswitcher_styles_settings
+destination:
+  plugin: config
+  config_name: styleswitcher.styles_settings

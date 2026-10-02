@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Contains dynamic_breadcrumb.module.
+ */
+
+use Drupal\Core\Breadcrumb\Breadcrumb;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dynamic_breadcrumb_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dynamic_breadcrumb module.
+    case 'help.page.dynamic_breadcrumb':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provide dynamic breadcrumb') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_breadcrumb_system_breadcrumb_alter().
+ */
+function dynamic_breadcrumb_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMatchInterface $route_match, array $context) {
+  $allowed_routes = [
+    'entity.node.canonical',
+    'entity.taxonomy_term.canonical',
+    'entity.media.canonical',
+    'entity.user.canonical',
+  ];
+  $route_name = $route_match->getRouteName();
+  if (in_array($route_name, $allowed_routes)) {
+    $dynamic_config = \Drupal::config('dynamic_breadcrumb.settings');
+    foreach ($breadcrumb->getLinks() as $link) {
+      if (in_array($link->getUrl()->getRouteName(), $allowed_routes)) {
+        $entity_type_from_link = array_key_first($link->getUrl()
+          ->getRouteParameters());
+        $entity_object = \Drupal::entityTypeManager()
+          ->getStorage($entity_type_from_link)
+          ->load($link->getUrl()->getRouteParameters()[$entity_type_from_link]);
+        $entity_bundle_from_ink = $entity_object->bundle();
+        if ($entity_type_from_link === 'taxonomy_term') {
+          $entity_type_from_link = 'term';
+        }
+        $link_entity_config = $dynamic_config->get($entity_type_from_link . '.' . $entity_bundle_from_ink);
+        if ($link_entity_config['checkbox']) {
+          $token_value = \Drupal::token()
+            ->replace($link_entity_config['value'], [$entity_type_from_link => $entity_object], ['clear' => TRUE]);
+          $link->setText(str_replace(' ', '', $token_value) ? $token_value : $entity_object->label());
+        }
+      }
+    }
+  }
+}

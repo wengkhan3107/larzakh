@@ -1,0 +1,49 @@
+/**
+ * @file
+ * Styles for Analog Digital Clock module.
+ */
+
+/* Base clock wrapper */
+.svg-clock-wrapper,
+.digital-clock-wrapper {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Analog clock specific */
+.svg-clock-wrapper {
+  aspect-ratio: 1;
+}
+
+.svg-clock {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Digital clock specific */
+.digital-clock-wrapper {
+  width: 100%;
+}
+
+.digital-clock {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.digital-time,
+.digital-date,
+.digital-day {
+  display: block;
+  line-height: 1.2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .svg-clock-wrapper,
+  .digital-clock-wrapper {
+    max-width: 100% !important;
+  }
+}

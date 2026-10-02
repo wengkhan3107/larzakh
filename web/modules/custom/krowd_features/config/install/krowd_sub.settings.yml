@@ -1,0 +1,25 @@
+features:
+  node_user_picture: 1
+  comment_user_picture: 1
+  comment_user_verification: 1
+  favicon: 1
+logo:
+  use_default: 1
+  path: ''
+favicon:
+  use_default: 1
+theme_skin: ''
+enable_customize: '0'
+sticky_menu: '1'
+site_layout: wide
+preloader: '0'
+google_api_key: ''
+default_header: header
+link_btn_header: '#'
+text_btn_header: 'Donate Now'
+footer_skin: ''
+footer_first_size: '4'
+footer_second_size: '2'
+footer_third_size: '2'
+footer_four_size: '4'
+customize_css: ''

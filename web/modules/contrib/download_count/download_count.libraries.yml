@@ -1,0 +1,23 @@
+chart:
+  js:
+    js/download_count_chart.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - download_count/peity_vanilla
+
+export-form-styling:
+  js:
+      js/download_count.js: {}
+
+  dependencies:
+    - core/jquery
+
+peity_vanilla:
+  js:
+    js/peity-vanilla.min.js: { minified: true }
+
+global-styling-css:
+  css:
+      theme:
+        css/download_count.css: {}

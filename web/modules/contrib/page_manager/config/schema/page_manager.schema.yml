@@ -1,0 +1,244 @@
+page_manager.page.*:
+  type: config_entity
+  label: 'Page'
+  mapping:
+    id:
+      type: string
+      label: 'Machine-readable name'
+    label:
+      type: label
+      label: 'Label'
+    description:
+      type: text
+      label: 'Description'
+    use_admin_theme:
+      type: boolean
+      label: 'Whether the page is displayed using the admin theme or not'
+    path:
+      type: string
+      label: 'Page path'
+    access_logic:
+      type: string
+      label: 'Access logic'
+    access_conditions:
+      type: sequence
+      label: 'Access Conditions'
+      sequence:
+        type: page_manager.condition.[id]
+        label: 'Access Condition'
+    parameters:
+      type: sequence
+      label: Parameter context list
+      sequence:
+        type: mapping
+        label: Parameter context
+        mapping:
+          machine_name:
+            type: string
+            label: 'Machine-readable name'
+          label:
+            type: label
+            label: 'Label of the context'
+          type:
+            type: string
+            label: 'Context type'
+          optional:
+            type: boolean
+            label: 'Optional'
+    menu_type:
+      type: string
+      label: 'Menu type'
+    menu_settings:
+      type: page_manager.menu.settings.[%parent.menu_type]
+      label: 'Menu settings'
+
+# Base type shared by every Page Manager menu type plugin. Plugins provided by
+# other modules should declare page_manager.menu.settings.MY_PLUGIN_ID and
+# extend this type when they add settings of their own.
+page_manager.menu.settings:
+  type: mapping
+  label: 'Menu settings'
+  mapping:
+    title:
+      type: label
+      label: 'Title'
+    weight:
+      type: integer
+      label: 'Weight'
+
+# Fallback for menu type plugins that ship no schema of their own.
+page_manager.menu.settings.*:
+  type: page_manager.menu.settings
+  label: 'Menu settings'
+
+# The page is not placed in a menu, so there is nothing to store.
+page_manager.menu.settings.none:
+  type: mapping
+  label: 'No menu settings'
+
+page_manager.menu.settings.normal_menu:
+  type: page_manager.menu.settings
+  label: 'Normal menu entry settings'
+  mapping:
+    menu_name:
+      type: string
+      label: 'Menu'
+
+page_manager.menu.settings.menu_tab:
+  type: page_manager.menu.settings
+  label: 'Menu tab settings'
+
+page_manager.menu.settings.menu_action:
+  type: page_manager.menu.settings
+  label: 'Local action settings'
+
+page_manager.menu.settings.default_menu_tab:
+  type: page_manager.menu.settings
+  label: 'Default menu tab settings'
+  mapping:
+    parent_menu_type:
+      type: string
+      label: 'Parent menu type'
+    parent_title:
+      type: label
+      label: 'Parent title'
+    parent_menu:
+      type: string
+      label: 'Parent menu'
+    parent_weight:
+      type: integer
+      label: 'Parent weight'
+
+page_manager.page_variant.*:
+  type: config_entity
+  label: 'Page variant configuration'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    weight:
+      type: integer
+      label: 'Weight'
+    uuid:
+      type: string
+      label: 'UUID'
+    variant:
+      type: string
+      label: 'Display variant'
+    variant_settings:
+      type: display_variant.plugin.[%parent.variant]
+      label: 'Variant settings'
+    page:
+      type: string
+      label: 'Parent page'
+    selection_criteria:
+      type: sequence
+      label: 'Selection criteria'
+      sequence:
+        type: page_manager.condition.[id]
+        label: 'Selection condition'
+    selection_logic:
+      type: string
+      label: 'Selection logic'
+    static_context:
+      type: sequence
+      label: Static context list
+      sequence:
+        type: ctools.context
+        label: 'Static context'
+
+page_manager.block_plugin.*:
+  type: block.settings.[id]
+  mapping:
+    region:
+      type: string
+      label: 'Region'
+    weight:
+      type: integer
+      label: 'Weight'
+    uuid:
+      type: string
+      label: 'UUID'
+    context_mapping:
+      type: sequence
+      label: 'Context assignments'
+      sequence:
+        type: string
+    view_mode:
+      type: string
+      label: 'View mode'
+
+# @todo Move to core in https://www.drupal.org/node/2838130.
+display_variant.plugin.*:
+  type: display_variant.plugin
+  label: 'Variant settings'
+condition.plugin.*:
+  type: condition.plugin
+  label: 'Condition settings'
+
+page_manager.condition.*:
+  type: condition.plugin.[id]
+  label: 'Condition settings'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+      constraints:
+        PluginExists:
+          manager: plugin.manager.condition
+          interface: 'Drupal\Core\Condition\ConditionInterface'
+    negate:
+      type: boolean
+      label: 'Negate'
+    uuid:
+      type: uuid
+    context_mapping:
+      type: sequence
+      label: 'Context assignments'
+      sequence:
+        type: string
+
+display_variant.plugin.block_display:
+  type: display_variant.plugin
+  label: 'Block variant plugin'
+  mapping:
+    selection_logic:
+      type: string
+      label: 'Selection logic'
+    selection_conditions:
+      type: sequence
+      label: 'Selection Conditions'
+      sequence:
+        type: page_manager.condition.[id]
+        label: 'Selection Condition'
+    blocks:
+      type: sequence
+      label: 'Blocks'
+      sequence:
+        type: page_manager.block_plugin.[id]
+    page_title:
+      type: label
+      label: 'Page title'
+
+display_variant.plugin.http_status_code:
+  type: display_variant.plugin
+  label: 'HTTP status code variant plugin'
+  mapping:
+    status_code:
+      type: integer
+      label: 'Status code'
+    redirect_location:
+      type: string
+      label: 'Redirect location'
+
+display_variant.plugin.layout_builder:
+  type: display_variant.plugin
+  label: 'Layout Builder'
+  mapping:
+    sections:
+      type: sequence
+      sequence:
+        type: layout_builder.section

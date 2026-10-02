@@ -1,0 +1,26 @@
+{
+  "name": "drupal/xmlfeedviews",
+  "description": "This module allows you to create an XML feed from views of a Drupal site.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "keywords": ["Drupal"],
+  "homepage": "https://www.drupal.org/project/xmlfeedviews",
+  "authors": [
+    {
+      "name": "Adarsh Khatri (admirernepali)",
+      "homepage": "https://www.drupal.org/u/admirernepali",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Viktor Holovachek (AstonVictor)",
+      "homepage": "https://www.drupal.org/u/astonvictor",
+      "role": "Maintainer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/xmlfeedviews",
+    "source": "https://git.drupalcode.org/project/xmlfeedviews"
+  },
+  "require": { }
+}

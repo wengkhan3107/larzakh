@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Module hooks for usage.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function time_clock_help($route_name) {
+  switch ($route_name) {
+    case 'help.page.time_clock':
+      $output = '';
+      $output .= '<h3>' . t('About:') . '</h3>';
+      $output .= '<p>' . t('This module works as a Digital Time clock and shows the current date & time as per the country timezone set in admin configuration.') . '</p>';
+      $output .= '<h3>' . t('Configuration Steps:') . '</h3>';
+      $output .= '<ol>
+            <li>' . t('Install & enable the module as usual.') . '</li>
+            <li>' . t('Go to the admin page "Structure >> Block Layout" and enable the relevant block "Time Clock" in a region.') . '</li>
+            <li>' . t('Set the desired values in the block configuration.') . '</li>
+            <li>' . t('Now, a current date & time will be visible there.') . '</li>
+        </ol>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function time_clock_theme() {
+  return [
+    'time_clock' => [
+      'variables' => [
+        'data' => [],
+      ],
+    ],
+  ];
+}

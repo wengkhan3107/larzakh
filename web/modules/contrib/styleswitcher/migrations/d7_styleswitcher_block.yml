@@ -1,0 +1,100 @@
+# Copied from d7_block.yml
+# @see core/modules/block/migrations/d7_block.yml
+id: d7_styleswitcher_block
+label: Style Switcher block
+migration_tags:
+  - Drupal 7
+  - Configuration
+source:
+  plugin: block
+process:
+  plugin:
+    -
+      plugin: static_map
+      source: module
+      map:
+        styleswitcher: styleswitcher_styleswitcher
+      # Skip all other blocks.
+      default_value: false
+    -
+      plugin: skip_on_empty
+      method: row
+  # Block status is not a thing in Drupal 8, so this is how we skip over
+  # disabled blocks.
+  status:
+    plugin: skip_on_empty
+    method: row
+    source: status
+  id:
+    -
+      plugin: concat
+      source:
+        - theme
+        - module
+        - delta
+      delimiter: _
+    -
+      plugin: machine_name
+      field: id
+  theme:
+    plugin: block_theme
+    source:
+      - theme
+      - default_theme
+      - admin_theme
+  region:
+    plugin: block_region
+    source:
+      - theme
+      - '@theme'
+      - region
+    map:
+      bartik:
+        # Bartik 7.x --> Olivero 9.4.x
+        olivero:
+          featured: highlighted
+          triptych_first: content_below
+          triptych_middle: content_below
+          triptych_last: content_below
+          footer_firstcolumn: footer_top
+          footer_secondcolumn: footer_top
+          footer_thirdcolumn: footer_top
+          footer_fourthcolumn: footer_top
+          footer: footer_bottom
+          sidebar_first: sidebar
+      seven:
+        # Seven 7.x --> Claro 9.4.x
+        claro:
+          header: 'header'
+          pre_content: 'pre_content'
+          breadcrumb: 'breadcrumb'
+          highlighted: 'highlighted'
+          help: 'help'
+          content: 'content'
+          page_top: 'page_top'
+          page_bottom: 'page_bottom'
+          sidebar_first: 'sidebar_first'
+    # If mapping fails, put the block in the content region.
+    default_value: content
+  weight: weight
+  settings:
+    plugin: block_settings
+    source:
+      - '@plugin'
+      - delta
+      - settings
+      - title
+  visibility:
+    plugin: block_visibility
+    source:
+      - visibility
+      - pages
+      - roles
+    # If the block uses PHP visibility, don't migrate it unless the PHP module
+    # is enabled.
+    skip_php: true
+destination:
+  plugin: entity:block
+migration_dependencies:
+  optional:
+    - d7_user_role

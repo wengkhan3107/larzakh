@@ -1,0 +1,28 @@
+user_activity_logger.logs:
+  path: '/admin/reports/user-activity-logs'
+  defaults:
+    _controller: '\Drupal\user_activity_logger\Controller\UserActivityLoggerController::logs'
+    _title: 'User Activity Logs'
+  requirements:
+    _permission: 'view user activity logs'
+user_activity_logger.settings:
+  path: '/admin/reports/user-activity-logs/settings'
+  defaults:
+    _form: '\Drupal\user_activity_logger\Form\UserActivityLoggerSettingsForm'
+    _title: 'User Activity Logger Settings'
+  requirements:
+    _permission: 'administer site configuration'
+user_activity_logger.clear_logs:
+  path: '/admin/reports/user-activity-logs/clear'
+  defaults:
+    _form: '\Drupal\user_activity_logger\Form\UserActivityLoggerClearLogsForm'
+    _title: 'Clear User Activity Logs'
+  requirements:
+    _permission: 'administer site configuration'
+user_activity_logger.track_click:
+  path: '/user-activity-logger/track-click'
+  defaults:
+    _controller: '\Drupal\user_activity_logger\Controller\UserActivityLoggerController::trackClick'
+  requirements:
+    _permission: 'access content'
+

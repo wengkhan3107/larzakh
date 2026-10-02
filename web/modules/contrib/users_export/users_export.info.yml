@@ -1,0 +1,13 @@
+name: 'Users Export'
+type: module
+description: 'Export your users to a flat file of various types.'
+core_version_requirement: ^9.0 || ^10.0
+package: User
+configure: users_export.form
+dependencies:
+  - views_data_export:views_data_export
+
+# Information added by Drupal.org packaging script on 2024-01-26
+version: '3.0.0'
+project: 'users_export'
+datestamp: 1706253557

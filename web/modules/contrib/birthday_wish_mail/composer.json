@@ -1,0 +1,12 @@
+{
+  "name": "drupal/birthday_wish_mail",
+  "description": "Send birthday wish mail to the user automatically. When the user's birthday comes.",
+  "type": "drupal-module",
+  "authors": [
+    {
+      "name": "Rohit Rajput (rohit-drupal)",
+      "homepage": "https://www.drupal.org/u/rohit-drupal",
+      "role": "Maintainer"
+    }
+  ]
+}

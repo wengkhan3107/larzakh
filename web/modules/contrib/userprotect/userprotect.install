@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the userprotect module.
+ */
+
+use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_install().
+ *
+ * Installs default userprotect permissions for authenticated users.
+ */
+function userprotect_install($is_syncing) {
+  if ($is_syncing) {
+    return;
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('user_role');
+  assert($storage instanceof ConfigEntityStorageInterface);
+
+  $role = $storage->loadOverrideFree(RoleInterface::AUTHENTICATED_ID);
+  if ($role instanceof RoleInterface) {
+    $role->grantPermission('userprotect.mail.edit');
+    $role->grantPermission('userprotect.pass.edit');
+    $role->grantPermission('userprotect.account.edit');
+    $role->trustData()->save();
+  }
+}
+
+/**
+ * Set default configuration for showing the applied protections message.
+ */
+function userprotect_update_8001() {
+  $config = \Drupal::configFactory()->getEditable('userprotect.settings');
+  if ($config->isNew()) {
+    $config->set('display_applied_protections_message', TRUE)->save();
+  }
+}

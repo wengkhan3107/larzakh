@@ -1,0 +1,515 @@
+.mo_saml_table_layout_support_btn {
+  position: fixed;
+  top: 100px;
+  z-index: 10000;
+  right: -391px;
+}
+
+#mosaml-feedback-overlay {
+  background: rgba(11, 13, 13, 0.44);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 9999;
+}
+
+.mo_saml_table_layout_support_1 {
+  border-radius: 4px;
+  position: relative;
+  width: 350px;
+  border: 1px solid #cccccc;
+  padding: 15px 20px 17px 20px;
+  background-color: white;
+}
+
+.mo_saml_table_layout {
+  border-radius: 1px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  margin-bottom: 2%;
+}
+
+.mo_saml_full_screen_tabel {
+  border-radius: 1px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+}
+
+.mo_saml_container {
+  width: 70%;
+  padding: 2%;
+}
+
+.mo_saml_sp_main_container {
+  display: flex;
+}
+
+.mo_saml_sp_container_2 {
+  width: 30%;
+  padding: 2%;
+  border-radius: 4px;
+  margin-left: 2%;
+}
+
+.mo_saml_full_page_container {
+  width: 96%;
+  padding: 25px;
+  border-radius: 4px !important;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  float: none;
+}
+
+.fa.fa-pull-right {
+  margin-left: .3em;
+}
+.fa-pull-right {
+  float: right;
+}
+
+.mo_saml_table_layout_1 {
+  background-color: #e0e0d8;
+  width: 98%;
+  padding: 1%;
+  overflow: hidden;
+}
+.mo_saml_configure_message {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  border-radius: 10px;
+  border: 1px solid #fb9a9a;
+  color: red;
+  background-color: rgba(255,0,0,0.1);
+  padding: 8px;
+}
+
+.mo_saml_highlight_background_note {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  padding: 0.55em;
+  width: 97%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .gin--dark-mode .mo_saml_highlight_background_note {
+    background-color: #e0e0e033;  /* Dark background for dark mode */
+  }
+}
+
+.mo_saml_highlight_background_note_2 {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  padding: 0.55em;
+  width: max-content;
+}
+
+.mo_orange {
+  color: orange;
+}
+
+.mo_saml_highlight_background_note_export {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  padding: 0.55em;
+  width: 98%;
+}
+
+.mo_saml_text_center{
+  text-align: center;
+}
+
+.mo_saml_faq_text_center{
+  text-align: center;
+  margin-top: -20px;
+}
+
+.mo_saml_meta_upload {
+  display: none;
+}
+
+/* Licencing tab */
+
+.mo_saml_font_for_heading{
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.mo-upgrade-plan{
+    display: flex;
+    justify-content: space-evenly;
+    height: 1000px;
+    margin-bottom: 200px;
+}
+
+.mo-pricing-plan{
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: white;
+    width: 25%;
+    height: 650px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mo-pricing{
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: -10px;
+    margin-bottom: -30px;
+}
+
+.pricing-text{
+    font-size: x-large;
+    letter-spacing: 1px;
+    color: #666;
+    margin-top: 35px;
+}
+
+.pricing-free{
+  display: flex;
+  gap: 20px;
+  align-items: last baseline;
+  margin-top: -40px;
+}
+
+.pricing-btn {
+    padding: 12px 24px;
+    width: 250px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.free-btn {
+    background-color: #ff5a1f;
+    color: white;
+    margin-top: 50px;
+}
+
+.free-btn:hover {
+    color: white;
+    text-decoration: none !important;
+}
+
+.list_of_feature{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.premium {
+  border: 1px solid #ff6600;
+}
+
+.premium-btn {
+    border: 2px solid #ff5a1f;
+    color: rgba(0, 0, 0, 0.6) !important;
+}
+
+#price-plan{
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: -20px;
+  padding-bottom: 20px;
+}
+
+.dropdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: -60px;
+}
+
+.dropdown-parent{
+  width: 48%;
+}
+
+.mo_pricing_dropdown-text,
+.users_dropdown-text
+{
+  font-size: 12px;
+}
+
+.mo_pricing_dropdown,
+.users_dropdown
+{
+  width: 100%;
+  height: 40px;
+}
+
+table.mo_how_to_upgrade td{
+    border: groove;
+    height: 2em;
+    width: 25% !important;
+}
+
+.right_shift{
+  margin-left: 20px;
+}
+
+.support-email{
+  text-decoration: none;
+  color: #ff6600;
+}
+
+/* Setup guide table start */
+.mo_guide_table {
+  max-width: 100%;
+  margin-bottom: 20px;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.mo_copy_icon_not_center>thead>tr>th,
+.mo_guide_table-bordered>thead>tr>th {
+  border-bottom-width: 2px;
+}
+.mo_guide_table-bordered,
+.mo_copy_icon_not_center {
+  border: 1px solid #ddd;
+}
+
+.mo_guide_table-bordered>thead>tr>th,
+.mo_guide_table-bordered>tbody>tr>td {
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.mo_copy_icon_not_center>thead>tr>th,
+.mo_copy_icon_not_center>tbody>tr>td {
+  border: 1px solid #ddd;
+}
+
+.mo_guide_table>thead>tr>th {
+  padding: 8px;
+  line-height: 1.42857143;
+}
+
+.mo_guide_text-center {
+  text-align: center;
+}
+
+.mo_guide_table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+.mo_guide_text-color {
+  color: #fe7e00;
+}
+
+.mo_saml_container_2 {
+  width: 29%;
+  padding: 2%;
+  border-radius: 4px; !important;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  float: right;
+}
+
+.mo_pricing_plus_sign,
+.mo_pricing_plus_sign_2 {
+  font-size: 26px;
+  font-weight: 100;
+  color: #ffffff;
+  position: relative;
+  text-align: center;
+}
+
+#edit-mo-pricing-dropdown,
+#edit-mo-pricing-dropdown-2,
+#edit-do-it-yourself-pricing,
+#edit-do-it-yourself-pricing-2 {
+  color: black;
+}
+
+.js-form-item-mo-pricing-dropdown,
+.js-form-item-do-it-yourself-pricing,
+.js-form-item-mo-pricing-dropdown-2,
+.js-form-item-do-it-yourself-pricing-2 {
+  margin: auto !important;
+  width: 200px;
+}
+
+.mo_idp_selected-text,
+.mo_idp_selected-text>* {
+  background: #2196f3;
+  color: #ffffff;
+}
+
+.mo_idp_mo_saml_highlight_background_url_note {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  padding: 0.55em;
+  width: fit-content;
+  float: left;
+}
+
+.mo-margin {
+  margin-left: 10px;
+}
+
+/* Shift take a tour button to the right  */
+.miniorange_float_right {
+  float: right;
+}
+
+/* Welcome message of registration page */
+.mo_saml_welcome_message {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 15px;
+  color: rgba(0, 128, 0, 0.70);
+  background-color: rgba(0, 255, 0, 0.15);
+  padding: 5px;
+  border: 1px solid rgba(0, 128, 0, 0.15);
+  border-radius: 4px;
+}
+
+/* FAQ button and Ask question on forum button*/
+.mo_faq_button_left {
+  float: inherit;
+  color: #48a0dc;
+  border: 2px solid #48a0dc;
+  padding: 1.5% 3%;
+}
+
+.mo_faq_button_left:hover {
+  transform: scale(1.1);
+}
+.mo_faq_button_right {
+  float: inherit;
+  color: #48a0dc;
+  border: 2px solid #48a0dc;
+  padding: 1.5% 3%;
+  margin-left: 6%;
+}
+
+.mo_faq_button_right:hover {
+  transform: scale(1.1);
+}
+
+.ns_row {
+  margin: 15px 0px;
+}
+
+.ns_name {
+  display: inline-block;
+  width: 16%;
+  max-width: 450px;
+}
+
+.ns_value {
+  display: inline-block;
+  width: 40%;
+}
+
+#tabhead_vt {
+  padding: 10px;
+}
+
+/** CSS for advertise website security */
+.mo_ns_image1 {
+  border: none;
+  padding-bottom: 4%;
+  text-align: center;
+}
+.mo_ns_row {
+  border-right: hidden;
+  border-bottom: hidden;
+}
+.mo_ns_align {
+  text-align: justify;
+}
+.mo_ns_padding {
+  padding: 2% 3%;
+  margin-right: 5%;
+}
+.mo_ns_td {
+  padding-left: 20%;
+}
+
+/** CSS for page headings */
+.mo_saml_idp_font_for_heading {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  margin-top: 1.2%;
+  font-weight: bold;
+  padding-bottom: 1%;
+  float: left;
+}
+/** CSS for service provider setup tab headings */
+.mo_saml_font_idp_setup_for_heading {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: bold;
+  padding-bottom: 1%;
+  color: #d9534f;
+  text-align: center;
+}
+
+/** CSS for page sub headings */
+.mo_saml_font_for_sub_heading {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding-bottom: 1%;
+}
+/** CSS setup guide table header */
+#mo_SP_url_table th {
+  text-align: center;
+}
+
+
+/*making attribute mapping inline*/
+
+.mo_idp_delete_btn_class {
+  float: right;
+}
+.mo_idp_attr_map_row {
+  margin: 15px 0px;
+}
+
+.mo_idp_attr_map_sp_name {
+  display: inline-block;
+  width: 35% !important;
+  max-width: 450px;
+}
+.mo_idp_attr_map_sp_name_textfield {
+  width: 90% !important;
+}
+.mo_idp_attr_map_idp_name {
+  display: inline-block;
+  width: 55%;
+}
+
+.button_class_attr {
+  color: #fff !important;
+  background: #337ab7 !important;
+  border-color: #2e6da4 !important;
+  font-size: 0.5rem !important;
+  border-radius: 5px !important;
+}
+
+.mo_idp_role_map_delete,
+.mo_idp_attr_map_delete {
+  display: inline-block;
+  width: 6%;
+}

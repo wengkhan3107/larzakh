@@ -1,0 +1,16 @@
+type: theme
+base theme: styleswitcher_test_base_theme
+name: 'Style Switcher Test'
+description: 'Theme for testing the Style Switcher.'
+package: Testing
+
+styleswitcher:
+  css:
+    Green text: css/green-fg.css
+    Blue back: css/blue-bg.css
+  default: Blue back
+
+# Information added by Drupal.org packaging script on 2024-08-07
+version: '8.x-2.4'
+project: 'styleswitcher'
+datestamp: 1723042637

@@ -1,0 +1,14 @@
+name: Blocks in Accordion
+description: Displays blocks in jquery accordion widget.
+package: Block
+
+type: module
+core_version_requirement: ^8.8 || ^9 || ^10
+dependencies:
+  - drupal:block
+  - jquery_ui_accordion:jquery_ui_accordion
+
+# Information added by Drupal.org packaging script on 2022-11-23
+version: '2.0.2'
+project: 'accordion_blocks'
+datestamp: 1669190724

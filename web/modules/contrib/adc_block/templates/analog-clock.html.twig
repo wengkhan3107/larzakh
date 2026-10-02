@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Default template for Analog Clock block.
+ *
+ * Available variables:
+ * - content: Array of content details.
+ *   - heading: The clock heading text.
+ *   - footer: The clock footer text.
+ * - data: JSON data of the clock configuration.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="adc_block-analog-container">
+  {% if content.heading %}
+    <div class="adc_block-heading">{{ content.heading }}</div>
+  {% endif %}
+  {% if data %}
+    <div class="adc_block-clock">
+      <canvas class="adc_block-analog" height="400" data-config="{{ data }}"></canvas>
+    </div>
+  {% endif %}
+  {% if content.footer %}
+    <div class="adc_block-footer">{{ content.footer }}</div>
+  {% endif %}
+</div>

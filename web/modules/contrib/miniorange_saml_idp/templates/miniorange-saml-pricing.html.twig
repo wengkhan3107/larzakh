@@ -1,0 +1,87 @@
+{% set contact_email = contact_email %}
+{% set pricing_url = pricing_url %}
+{% set service_providers = service_providers_pricing %}
+{% set users_pricing = users_pricing %}
+
+<div >
+    <span class="mo_saml_font_for_heading">UPGRADE PLANS</span>
+    <hr>
+    <section class="mo-upgrade-plan">
+        <div class="mo-pricing-contact">
+            <h1>Pricing Plans for Everyone</h1>
+            <p>Transparent, Simple Pricing</p>
+            <hr>
+            <p>Contact us at</p>
+            <a class="support-email" href="mailto:{{ contact_email }}">{{ contact_email }}</a>
+        </div>
+
+        <!-- Free Plan -->
+        <div class="mo-pricing-plan">
+            <h2 class="mo-pricing">Free</h2>
+            <p class="pricing-text">List Price</p>
+            <div class="pricing-free">
+                <h3 class="mo-pricing">$0</h3>
+                <p class="pricing-text">for one user forever</p>
+            </div>
+            <a class="pricing-btn free-btn">You are on this plan</a>
+            <hr>
+            <h5>Try out the features</h5>
+            <ul class="list_of_feature">
+                <li>✔ Unlimited authentications</li>
+                <li>✔ Available for administrators only</li>
+                <li>✔ Supports one application/service provider</li>
+                <li>✔ Signs SAML assertions</li>
+                <li>✔ Sends basic attributes only in the assertion</li>
+                <li>✔ Only SP initiated SSO is possible</li>
+                <li>✔ Metadata upload via URL, XML, or manual <span class="right_shift">configuration</span></li>
+            </ul>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="mo-pricing-plan premium" id="plans">
+            <h2 class="mo-pricing">Premium</h2>
+            <p class="pricing-text">List Price</p>
+            <p id="price-plan"></p>
+
+            <div class="dropdown-row">
+                <div class="dropdown-parent">
+                    <label for="mo_pricing_dropdown" class="mo_pricing_dropdown-text">Service Providers : (One Time)</label>
+                    <select id="mo_pricing_dropdown" class="mo_pricing_dropdown">
+                        {% for key, price in service_providers %}
+                            <option value="{{ key }}">{{ key }} - {{ price }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="dropdown-parent">
+                    <label for="users_dropdown" class="users_dropdown-text">Users : (One Time)</label>
+                    <select id="users_dropdown" class="users_dropdown">
+                        {% for range, price in users_pricing %}
+                            <option value="{{ range }}">{{ range }} - {{ price }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <a class="pricing-btn premium-btn" target="_blank" href="{{ pricing_url }}">Upgrade now</a>
+            <hr>
+            <h5>All Features in Free+</h5>
+            <ul class="list_of_feature">
+                <li>✔ Unlimited SSO for all user roles</li>
+                <li>✔ Supports multiple applications/service <span class="right_shift">providers</span></li>
+                <li>✔ Both SP and IdP-initiated SSO</li>
+                <li>✔ Supports SAML Single Logout</li>
+                <li>✔ Sends all user attributes and roles in SAML <span class="right_shift">assertion</span></li>
+                <li>✔ Can sends the constant and profile module <span class="right_shift">attributes in the SAML assertion</span></li>
+                <li>✔ Support for signed response and encrypted <span class="right_shift">assertion</span></li>
+                <li>✔ Custom certificate generation</li>
+                <li>✔ 2FA before SSO</li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+{{ attach_library('miniorange_saml_idp/mo_saml_pricing') }}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script id="pricing-email" data-email="{{ contact_email }}"></script>
+<script src="/miniorange_saml_idp/js/twigtemplate.js"></script>
+

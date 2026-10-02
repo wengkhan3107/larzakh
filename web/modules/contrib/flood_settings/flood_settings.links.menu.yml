@@ -1,0 +1,6 @@
+flood_settings.settings:
+  title: 'Flood settings'
+  description: 'Manage IP or user restrictions after failed logins.'
+  weight: 0
+  route_name: flood_settings.settings
+  parent: system.admin_config_system

@@ -1,0 +1,22 @@
+#adc_block-screen {
+  display: inline-block;
+}
+#adc_block-timezone {
+  display: inline-block;
+  margin: auto;
+  padding: 15px;
+}
+#adc_block-timezone p {
+  margin: 10px;
+  text-align: center;
+}
+#adc_block-digitaltime {
+  font-weight: bold;
+}
+#adc_block-date {
+  font-weight: bold;
+}
+#adc_block-description {
+  margin: 10px;
+  font-weight: bold;
+}

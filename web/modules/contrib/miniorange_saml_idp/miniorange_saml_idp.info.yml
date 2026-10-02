@@ -1,0 +1,15 @@
+name: 'miniOrange SAML Identity Provider'
+type: module
+package: miniOrange
+core_version_requirement: ^9.3 || ^10 || ^11
+description: 'Single Sign-on into any SAML 2.0 compliant Service Provider using your Drupal site as an IDP.'
+configure: miniorange_saml_idp.idp_setup
+# Information added by Drupal.org packaging script on 2020-07-09
+# version: '8.x-2.13'
+# project: 'miniorange_saml_idp'
+# datestamp: 1594280908
+
+# Information added by Drupal.org packaging script on 2026-05-22
+version: '4.0.0'
+project: 'miniorange_saml_idp'
+datestamp: 1779430648

@@ -1,0 +1,7 @@
+group.type.*.third_party.group_permissions:
+  type: mapping
+  label: 'Group Permissions Settings'
+  mapping:
+    enabled:
+      type: 'boolean'
+      label: 'Group permissions is enabled'

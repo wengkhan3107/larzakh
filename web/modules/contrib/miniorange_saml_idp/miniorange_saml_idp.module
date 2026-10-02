@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * @file
+ * @file
+ * .*/
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\miniorange_saml_idp\Controller\MiniorangeSamlIdpController;
+
+/**
+ * @file
+ * Module file for miniOrange SAML Module.
+ */
+
+ function miniorange_saml_idp_theme($existing, $type, $theme, $path) {
+  return [
+      'miniorange_saml_pricing' => [
+          'variables' => [
+              'contact_email' => NULL,
+              'pricing_url' => NULL,
+              'service_providers_pricing' => [],
+              'users_pricing' => []
+          ],
+      ],
+  ];
+}
+
+/**
+ * Implements hook_menu().
+ */
+function miniorange_saml_idp_user_login($account) {
+  if (isset($_COOKIE['response_params'])) {
+    $response_params = json_decode(stripslashes($_COOKIE['response_params']), TRUE);
+    if (strcmp($response_params['moIdpsendResponse'], 'true') == 0) {
+      MiniorangeSamlIdpController::miniorangeIdpSendReponse($response_params['acs_url'], $response_params['audience'], $response_params['relayState'], $response_params['inResponseTo']);
+    }
+  }
+}
+
+/**
+ * Implements hook_help().
+ */
+function miniorange_saml_idp_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.miniorange_saml_idp':
+      $url = Url::fromRoute('user.admin_index')->toString();
+      $moduleLink = $url . '/miniorange_saml_idp/idp_setup';
+      $supoortLink = $url . '/miniorange_saml_idp/support';
+      $output = '';
+      $output .= '<h3>' . t('About <a target="_blank" href="https://plugins.miniorange.com/drupal-saml-idp">[Know more]</a>') . '</h3>';
+      $output .= '<p>' . t('The miniOrange SAML IdP module allows users residing in your Drupal site to login to your SAML 2.0 Compliant Service Provider. This module allows your Drupal site to act as a SAML 2.0 Identity Provider which can be configured to establish the trust between the Drupal site and supported Service Providers to securely authenticate the user.') . '</p>';
+      $output .= '<h3>' . t('Configuration') . '</h3>';
+      $output .= '<p>' . t('Configure SAML Identity Provider from <a target="_blank" href="/admin/config">Configuration</a> » <a target = "_blank" href=" ' . $url . ' ">People</a> » <a target = "_blank" href=" ' . $moduleLink . ' ">miniOrange SAML Identity Provider</a>:') . '</p>';
+      $output .= '<p>
+                    <dl>
+                      <dt><b>' . t('1. Configure the SP (Service Provider)') . '</b></dt>
+                      <dd>' . t('From <a target="_blank" href="/admin/config/people/miniorange_saml_idp/sp_setup">IdP Metadata</a> tab get the metadata of the IdP and configure your SP with necessary information such as Entity ID, SAML Login URL, and Certificates.') . '</dd>
+                      <dt><b>' . t('2. Configure the IdP (Identity Provider)') . '</b></dt>
+                      <dd>' . t('Obtain the metadata form your SP. This metadata includes the Entity ID, ACS URL, NameID format and Certificates. Navigate to <a target="_blank" href="/admin/config/people/miniorange_saml_idp/idp_setup">Service Provide Setup</a> tab of the module and configure it with necessary information.') . '</dd>
+                      <dt><b>' . t('3. Test Configuration') . '</b></dt>
+                      <dd>' . t('In order to verify that IdP is properly configure scroll down to the button on Service Provider Setup tab click on the Test configuration button. If your configurations are correct then new window will open in which you will be logged into your SP successfully.') . '</dd>
+                      <dt><b>' . t('4. Start using the module') . '</b></dt>
+                      <dd>' . t('Once the configuration are tested and successful the you can start using Drupal site as IdP.') . '</dd>
+                      <dt><b>' . t('5. Need any help') . '</b></dt>
+                      <dd>' . t('If you need any assistance,you can reach out via email at <a href="mailto:drupalsupport@xecurify.com">drupalsupport@xecurify.com</a>.') . '</dd>
+                    </dl>
+                 </p>';
+      $output .= '<h3>' . t('Configuration Guides') . '</h3>';
+      $output .= '<a target="_blank" class="button" href="https://plugins.miniorange.com/drupal/setup-guides?category=saml-idp" >Setup Guides</a>';
+
+      return $output;
+  }
+}

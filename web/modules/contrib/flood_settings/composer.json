@@ -1,0 +1,18 @@
+{
+    "name": "drupal/flood_settings",
+    "description": "Administer flood settings easily from an admin page.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Christophe Klein",
+            "email": "christophe.klein.67@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://drupal.org/project/issues/flood_settings",
+        "source": "https://git.drupalcode.org/project/flood_settings"
+    },
+    "require": {}
+}

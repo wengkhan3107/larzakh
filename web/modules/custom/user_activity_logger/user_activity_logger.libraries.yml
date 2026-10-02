@@ -1,0 +1,7 @@
+link_tracker:
+  js:
+    js/link-tracker.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

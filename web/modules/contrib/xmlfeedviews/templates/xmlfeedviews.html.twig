@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Default template for feed displays that use the OPML style.
+ *
+ * Available variables:
+ * - title: The title of the feed (as set in the view).
+ * - updated: The modified date of the feed.
+ * - items: The feed items themselves.
+ *
+ * @see template_preprocess_views_view_opml()
+ *
+ * @ingroup themeable
+ */
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+#}
+{{ header|raw }}
+    {{ items|raw }}
+{{ footer|raw }}

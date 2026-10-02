@@ -1,0 +1,12 @@
+name: User Protect
+type: module
+description: 'Allows admins to protect users from being edited or cancelled, on a per-user basis.'
+core_version_requirement: ^8.8 || ^9 || ^10 || ^11
+configure: userprotect.rule_list
+dependencies:
+  - drupal:user
+
+# Information added by Drupal.org packaging script on 2026-02-27
+version: '8.x-1.4'
+project: 'userprotect'
+datestamp: 1772220682

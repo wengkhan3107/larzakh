@@ -1,0 +1,11 @@
+name: Commerce PayPal Test
+type: module
+description: 'Test module that provides a sample Event subscriber to alter the PayPal EC request.'
+package: Testing
+dependencies:
+  - commerce_paypal:commerce_paypal
+
+# Information added by Drupal.org packaging script on 2026-08-12
+version: '2.1.3'
+project: 'commerce_paypal'
+datestamp: 1786535137

@@ -1,0 +1,11 @@
+name: Job Scheduler
+description: Scheduler API
+type: module
+core_version_requirement: ^10.1 || ^11
+package: Job Scheduler
+configure: job_scheduler.admin_settings
+
+# Information added by Drupal.org packaging script on 2026-06-03
+version: '4.0.3'
+project: 'job_scheduler'
+datestamp: 1780502462

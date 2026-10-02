@@ -1,0 +1,4 @@
+view user activity logs:
+  title: 'View user activity logs'
+  description: 'Allows viewing of logged user activity.'
+  restrict access: TRUE

@@ -1,0 +1,9 @@
+type: module
+name: 'Style Switcher Test Theme Per Page'
+description: 'Support module for testing the Style Switcher with multiple themes installed. It provides pages for each installed theme where it sets corresponding theme as active.'
+package: Testing
+
+# Information added by Drupal.org packaging script on 2024-08-07
+version: '8.x-2.4'
+project: 'styleswitcher'
+datestamp: 1723042637

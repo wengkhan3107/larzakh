@@ -1,0 +1,4 @@
+services:
+  miniorange_saml_idp.cert_generator:
+    class: Drupal\miniorange_saml_idp\CertificateKeyGenerator
+    arguments: ['@config.factory','@extension.path.resolver','%app.root%']

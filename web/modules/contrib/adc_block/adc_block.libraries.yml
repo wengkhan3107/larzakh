@@ -1,0 +1,38 @@
+adc_block.analog:
+  version: VERSION
+  css:
+    theme:
+      css/analog.css: {}
+  js:
+    js/analog.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal
+    - core/drupalSettings
+
+adc_block.digital:
+  version: VERSION
+  css:
+    theme:
+      css/digital.css: {}
+  js:
+    js/digital.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal
+    - core/drupalSettings
+
+clocks:
+  version: 1.0
+  css:
+    theme:
+      css/clocks.css: {}
+  js:
+    js/clocks.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

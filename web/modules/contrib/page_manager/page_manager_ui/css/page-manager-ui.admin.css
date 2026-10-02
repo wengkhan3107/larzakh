@@ -1,0 +1,102 @@
+/**
+ * @file
+ * Styles for Page Manager admin.
+ */
+
+/* Narrow screens */
+
+.page-manager-wizard-tree,
+.page-manager-wizard-form {
+  box-sizing: border-box;
+}
+
+/**
+ * Wizard actions across the top.
+ */
+.page-manager-wizard-actions {
+  text-align: right; /* LTR */
+}
+.page-manager-wizard-actions ul.inline,
+.page-manager-wizard-actions ul.inline li {
+  display: inline-block;
+  margin: 0;
+}
+.page-manager-wizard-actions ul.inline {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+}
+.page-manager-wizard-actions ul.inline li {
+  padding: 0.5em;
+  border-right: 1px solid black;
+}
+
+/**
+ * The tree of wizard steps.
+ */
+.page-manager-wizard-tree ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.page-manager-wizard-tree ul > li > ul {
+  margin-left: 1em;
+}
+.page-manager-wizard-tree > ul {
+  margin-bottom: 20px;
+  padding-bottom: 0.5em;
+  border: 1px solid black;
+}
+.page-manager-wizard-tree li {
+  padding: 0.5em;
+  padding-right: 0;
+  border-bottom: 1px solid black;
+}
+.page-manager-wizard-tree li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+/**
+ * The wizard form.
+ */
+.page-manager-wizard-form {
+  margin-bottom: 20px;
+  padding: 1em;
+  border: 1px solid black;
+}
+
+/* Wide screens */
+@media screen and (min-width: 780px), (orientation: landscape) and (min-device-height: 780px) {
+  /* Overall layout. */
+  .page-manager-wizard-main {
+    display: flex;
+  }
+  .page-manager-wizard-tree {
+    flex: 0.2;
+  }
+  .page-manager-wizard-form {
+    flex: 0.8;
+  }
+  .page-manager-wizard-form-actions {
+    margin-left: 20%; /* LTR */
+  }
+
+  /* Make the borders look nice. */
+  .page-manager-wizard-tree > ul {
+    border-right: 0; /* LTR */
+  }
+
+  /* Right-to-left support. */
+  [dir="rtl"] .page-manager-wizard-tree,
+  [dir="rtl"] .page-manager-wizard-form {
+    float: right;
+  }
+  [dir="rtl"] .page-manager-wizard-form-actions {
+    margin-right: 20%;
+    margin-left: 0;
+  }
+  [dir="rtl"] .page-manager-wizard-tree > ul {
+    border-right: 1px solid black;
+    border-left: 0;
+  }
+}

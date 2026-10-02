@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Allows site administrators to modify configuration.
+ */
+
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\features_ui\Hook\FeaturesUiHooks;
+
+/**
+ * Implements hook_theme().
+ */
+#[LegacyHook]
+function features_ui_theme() {
+  return \Drupal::service(FeaturesUiHooks::class)->theme();
+}
+
+/**
+ * Implements hook_preprocess_features_assignment_configure_form().
+ */
+#[LegacyHook]
+function features_ui_preprocess_features_assignment_configure_form() {
+  return \Drupal::service(FeaturesUiHooks::class)->preprocessFeaturesAssignmentConfigureForm();
+}

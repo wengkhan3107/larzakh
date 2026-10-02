@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.campaign
+    - field.storage.commerce_product.field_campaign_update
+    - paragraphs.paragraphs_type.project_update
+  module:
+    - entity_reference_revisions
+id: commerce_product.campaign.field_campaign_update
+field_name: field_campaign_update
+entity_type: commerce_product
+bundle: campaign
+label: 'Campaign Update'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      project_update: project_update
+    target_bundles_drag_drop:
+      project_update:
+        enabled: true
+        weight: 2
+field_type: entity_reference_revisions

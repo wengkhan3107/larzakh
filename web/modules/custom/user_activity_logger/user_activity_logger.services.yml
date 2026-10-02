@@ -1,0 +1,12 @@
+services:
+  user_activity_logger.subscriber:
+    class: Drupal\user_activity_logger\EventSubscriber\UserActivitySubscriber
+    arguments: ['@current_user', '@database', '@path.current']
+    tags:
+      - { name: event_subscriber }
+
+  user_activity_logger.commands:
+    class: \Drupal\user_activity_logger\Commands\UserActivityLoggerCommands
+    tags:
+      - { name: drush.command }
+

@@ -1,0 +1,22 @@
+styleswitcher:
+  version: "2.x"
+  css:
+    component:
+      css/styleswitcher-overlay.css: {}
+  js:
+    js/styleswitcher.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+
+dynamic-css:
+  version: "2.x"
+  css:
+    theme:
+      # Temporary path which is replaced with a real URL in
+      # styleswitcher_css_alter().
+      styleswitcher.active.css:
+        attributes: { id: 'styleswitcher-css' }
+        # Don't aggregate or compress the dynamic CSS.
+        preprocess: false

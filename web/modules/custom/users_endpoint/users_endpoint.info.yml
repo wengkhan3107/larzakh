@@ -1,0 +1,10 @@
+name: "Users Rest API Endpoint"
+description: "Custom endpoint for users profiles"
+type: module
+core_version_requirement: ^9 || ^10
+package: Custom
+dependecies:
+   - rest
+   - serialization
+   - basic_auth
+   - profile

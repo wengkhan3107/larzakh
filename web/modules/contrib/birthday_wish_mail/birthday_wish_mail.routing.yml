@@ -1,0 +1,15 @@
+birthday_wish_mail.admin:
+  path: '/admin/config/birthday_wish_mail'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Birthday wish mail configuration'
+  requirements:
+    _permission: 'administer site configuration'
+
+birthday_wish_mail.settings_advanced:
+  path: '/admin/config/birthday_wish_mail/bwm_settings_advanced'
+  defaults:
+    _form: '\Drupal\birthday_wish_mail\Form\BirthdayWishMailSettingsForm'
+    _title: 'Birthday wish mail configuration form'
+  requirements:
+    _permission: 'administer site configuration'

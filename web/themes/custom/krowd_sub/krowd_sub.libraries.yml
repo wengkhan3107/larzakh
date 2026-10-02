@@ -1,0 +1,18 @@
+global-styling:
+  version: VERSION
+  header: true
+  css:
+    theme:
+      css/colors.css: {}
+      css/style.css: {}
+  js:
+    js/main.js: {}
+
+login-styling:
+  version: VERSION
+  header: true
+  css:
+    theme:
+      css/login.css: {}
+  js:
+    js/login.js: {}

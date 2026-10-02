@@ -1,0 +1,5 @@
+userprotect_test.test_local_task:
+  title: 'Test Local Task'
+  route_name: userprotect_test.local_task_page
+  base_route: entity.user.canonical
+  weight: 100

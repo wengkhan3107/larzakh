@@ -1,0 +1,27 @@
+dynamic_breadcrumb.admin:
+  path: '/admin/config/user-interface/dynamic-breadcrumb'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Dynamic breadcrumb settings'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+dynamic_breadcrumb.dynamic_breadcrumb_entity_types_form:
+  path: '/admin/config/user-interface/dynamic-breadcrumb/entity-types'
+  defaults:
+    _form: '\Drupal\dynamic_breadcrumb\Form\DynamicBreadcrumbEntityTypesForm'
+    _title: 'Dynamic Breadcrumb Entity Types Configuration'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+dynamic_breadcrumb.dynamic_breadcrumb_config_form:
+  path: '/admin/config/user-interface/dynamic-breadcrumb/general-settings'
+  defaults:
+    _form: '\Drupal\dynamic_breadcrumb\Form\DynamicBreadcrumbConfigForm'
+    _title: 'Dynamic Breadcrumb Configuration Form'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE

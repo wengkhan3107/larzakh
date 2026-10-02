@@ -1,0 +1,7 @@
+userprotect_test.local_task_page:
+  path: '/user/test-page'
+  defaults:
+    _controller: '\Drupal\userprotect_test\Controller\TestController::testPage'
+    _title: 'Test Page'
+  requirements:
+    _permission: 'access content'

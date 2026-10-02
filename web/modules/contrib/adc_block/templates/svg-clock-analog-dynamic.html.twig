@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Template for fully configurable analog SVG clock.
+ *
+ * Available variables:
+ * - block_id: Unique identifier for the clock.
+ * - config: Complete configuration array.
+ */
+#}
+<div class="svg-clock-wrapper analog-clock-wrapper" 
+     id="{{ block_id }}" 
+     data-config="{{ config|json_encode|e('html_attr') }}"
+     style="width: 100%; max-width: {{ config.clock_size }}px;">
+  <svg class="svg-clock analog-clock" viewBox="0 0 200 200" data-clock-type="analog"></svg>
+</div>

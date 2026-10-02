@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.campaigns
+  module:
+    - ctools
+    - gaviasthemer
+    - views
+  theme:
+    - krowd_sub
+third_party_settings:
+  gaviasthemer:
+    classes: no-background
+id: krowd_sub_views_block__campaigns_block_8
+theme: krowd_sub
+region: other
+weight: -15
+provider: null
+plugin: 'views_block:campaigns-block_8'
+settings:
+  id: 'views_block:campaigns-block_8'
+  label: 'Latest Campaigns'
+  provider: views
+  label_display: visible
+  views_label: 'Latest Campaigns'
+  items_per_page: none
+visibility:
+  'entity_bundle:commerce_product':
+    id: 'entity_bundle:commerce_product'
+    bundles:
+      campaign: campaign
+    negate: false
+    context_mapping:
+      commerce_product: '@commerce_product.product_route_context:commerce_product'

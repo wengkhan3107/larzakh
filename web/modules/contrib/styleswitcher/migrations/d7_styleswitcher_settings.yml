@@ -1,0 +1,21 @@
+id: d7_styleswitcher_settings
+label: Style Switcher settings
+migration_tags:
+  - Drupal 7
+  - Configuration
+source:
+  plugin: variable
+  variables:
+    - styleswitcher_enable_overlay
+    - styleswitcher_7206_theme_default
+  source_module: styleswitcher
+process:
+  enable_overlay:
+    source: styleswitcher_enable_overlay
+    plugin: default_value
+    default_value: true
+    strict: true
+  7206_theme_default: styleswitcher_7206_theme_default
+destination:
+  plugin: config
+  config_name: styleswitcher.settings

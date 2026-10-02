@@ -1,0 +1,17 @@
+type: theme
+base theme: false
+name: 'Style Switcher Test Base'
+description: 'Theme for testing the Style Switcher.'
+package: Testing
+
+libraries:
+  - styleswitcher_test_base_theme/global-styling
+
+styleswitcher:
+  css:
+    Yellow on Purple: css/yellow-on-purple.css
+
+# Information added by Drupal.org packaging script on 2024-08-07
+version: '8.x-2.4'
+project: 'styleswitcher'
+datestamp: 1723042637

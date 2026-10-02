@@ -1,0 +1,7 @@
+name: User Activity Logger
+type: module
+description: Logs user activities in the system.
+core_version_requirement: ^9 || ^10 || ^11
+package: Custom
+dependencies:
+  - drupal:user

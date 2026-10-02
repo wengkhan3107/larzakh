@@ -1,0 +1,30 @@
+<?php
+
+use \Drupal\Core\Utility\Error;
+
+/**
+ * @file
+ * Install file for miniOrange SAML Identity Provider module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function miniorange_saml_idp_install(){
+  update_certificate();
+}
+
+/**
+ * Update the X.509 certificate within the module. After the update, provide the updated metadata to the Service Provider (SP).
+ */
+function miniorange_saml_idp_update_91001() {
+  update_certificate();
+}
+
+function update_certificate() {
+  try {
+    \Drupal::service('miniorange_saml_idp.cert_generator')->ensureSamlCertificateExists();
+  } catch (Exception $exception) {
+    Error::logException(\Drupal::logger('miniorange_saml_idp'), $exception);
+  }
+}

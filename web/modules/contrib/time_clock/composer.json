@@ -1,0 +1,20 @@
+{
+  "name": "drupal/time_clock",
+  "description": "This module shows the current date & time as per the timezone set.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/time_clock",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/time_clock"
+  },
+  "authors": [
+    {
+      "name": "Hemant Gupta",
+      "homepage": "https://www.drupal.org/u/hemant-gupta",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+      "drupal/core": "^10.1 || ^11"
+  },
+  "license": "GPL-2.0+"
+}

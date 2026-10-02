@@ -1,0 +1,10 @@
+custom/default:
+  name: custom/default
+  label: Default
+  path: null
+custom/something:
+  label: Something
+  name: custom/something
+  path: 'public://css/css_IPvFjxVAOHPcivu1UQWzuqG0sBtusCTFaW5xCxjr6mY.css'
+_core:
+  default_config_hash: 9S7VqLfuCLdXcoAqzKdUlcVmE0t6lXqBEdJAG-zTikM

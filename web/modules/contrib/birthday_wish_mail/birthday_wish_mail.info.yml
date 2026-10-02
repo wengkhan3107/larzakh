@@ -1,0 +1,12 @@
+name: Birthday Wish Mail
+description: Send birthday wish mail to the user automatically. When the user's birthday will come. Mail trigger on drupal core cron based.
+type: module
+core_version_requirement: ^8 || ^9 || ^10 || ^11
+configure: birthday_wish_mail.admin
+dependencies:
+  - drupal:token
+
+# Information added by Drupal.org packaging script on 2024-08-11
+version: '2.0.4'
+project: 'birthday_wish_mail'
+datestamp: 1723352893

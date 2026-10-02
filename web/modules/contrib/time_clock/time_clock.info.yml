@@ -1,0 +1,9 @@
+name: Time Clock
+type: module
+description: This module shows the current date & time as per the timezone set.
+core_version_requirement: ^10.1 || ^11
+
+# Information added by Drupal.org packaging script on 2025-08-01
+version: '2.0.3'
+project: 'time_clock'
+datestamp: 1754046627

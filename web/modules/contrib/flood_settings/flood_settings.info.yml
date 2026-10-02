@@ -1,0 +1,11 @@
+name: Flood settings
+type: module
+description: Provides a ready-to-use UI for flood settings.
+core_version_requirement: ^10.3 || ^11 || ^12
+package: Spam control
+configure: flood_settings.settings
+
+# Information added by Drupal.org packaging script on 2026-06-17
+version: '3.0.1'
+project: 'flood_settings'
+datestamp: 1781705046

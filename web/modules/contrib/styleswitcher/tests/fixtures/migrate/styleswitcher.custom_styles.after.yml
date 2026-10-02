@@ -1,0 +1,9 @@
+styles:
+  custom/something:
+    name: custom/something
+    label: Something
+    path: 'public://css/a-custom-style-path.css'
+  custom/default:
+    name: custom/default
+    label: Default
+    path: null

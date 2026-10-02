@@ -1,0 +1,327 @@
+
+
+.btn-custom {
+  color: #ffffff;
+  font-size: 18px;
+  border: 1px solid #bdc3c7;
+  background-color: maroon;
+}
+.btn-custom:hover {
+  color: white#af3655  border: 1px solid #ffffff;
+  background-color: darkgreen;
+}
+.container{
+  width: 100%;
+}
+#pricing-table {
+
+  padding-top: 30px;
+}
+#pricing-table li{
+  height: 60px;
+  color: black;
+  text-align: center;
+  overflow: hidden;
+}
+
+.class_inline{
+  width: 18%;
+  display: inline-block;
+}
+.class_inline_1{
+  width: 24%;
+  display: inline-block;
+}
+#pricing-table .pricing {
+  margin: 0;
+  padding: 0;
+  font-family: 'Robot', sans-serif;
+}
+#pricing-table .pricing .pricing-table {
+  padding-bottom: 15px;
+}
+#pricing-table .pricing .pricing-table .pricing-header {
+  position: relative;
+  background: #34495e;
+  padding: 4px 9px;
+  text-align: center;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+#pricing-table .pricing .pricing-table .pricing-header .pricing-title {
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 500;
+}
+#pricing-table .pricing .pricing-table .pricing-header .pricing-rate {
+  font-size: 60px;
+  font-weight: 600;
+  color: #ffffff;
+  position: relative;
+  text-align: center;
+}
+#pricing-table .pricing .pricing-table .pricing-header .pricing-rate sup {
+  font-size: 24px;
+  position: relative;
+  top: -30px;
+  color: #bdc3c7;
+}
+#pricing-table .pricing .pricing-table .pricing-header .pricing-rate span {
+  font-size: 16px;
+  color: #bdc3c7;
+  text-transform: uppercase;
+}
+#pricing-table .pricing .pricing-list {
+  padding: 0 0 0 0;
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+}
+#pricing-table .pricing .pricing-list ul {
+  padding: 0px;
+  display: table;
+  margin: 0px auto;
+}
+#pricing-table .pricing .pricing-list ul li {
+  list-style: none;
+  border-bottom: 1px solid #EAECEB;
+  color: black;
+  font-size: 16px;
+  line-height: 42px;
+}
+#pricing-table .pricing .pricing-list ul li:last-child {
+  border: none;
+}
+#pricing-table .pricing .pricing-list ul li i {
+  margin-right: 12px;
+  color: #bdc3c7;
+}
+#pricing-table .pricing .pricing-list ul li span {
+  color: #34495e;
+}
+.upgrade_step{
+  width: 100%;
+  height: 50px;
+  margin: 5%;
+  padding-right: 5%;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.upgrade_step{
+  width: 100%;
+  height: 50px;
+  margin: 5%;
+  padding-right: 5%;
+}
+#pricing-header{
+  text-align: center;
+}
+#contact{
+  text-align: center;
+  margin-bottom: 4em;
+}
+.sup_price{
+  font-size: 2rem;
+  text-align: center;
+}
+.mo-card-body{
+  height: 70%;
+  padding-bottom: 1em;
+  background-color: aliceblue;
+}
+.plan_cards_main{
+  padding: auto;
+  text-align: center;
+  margin: auto;
+
+}
+.plan_cards_inner_divs{
+  margin: auto;
+}
+.mo-card-footer{
+  background-color: black !important;
+  color: white ;
+}
+.card-footer a{
+  color: white;
+}
+.card_module_description{
+  height: 40px;
+}
+.feature_comparison{
+  text-align: center; 
+  margin-top:3% !important;
+}
+.payment_method_inner_divs{
+  border-radius :0px 50px 0px 50px;
+  margin: auto;
+  text-align: center;
+  padding: 2%;
+}
+.payment_method_main_divs{
+  padding: 2%;
+  margin: 20px !important;
+    border-radius: 0px 50px 0px 50px;
+  border-left: 5px solid brown;
+ border-bottom-left-radius: 5em;
+ border-right: 5px solid brown;
+ border-top-right-radius: 5em;
+}
+.mo-card-body:hover{
+  background-color: pink !important;
+  color: black;
+}
+.instance{
+  margin-top: 60px !important;
+  margin-bottom: 10px !important;
+  padding-left: 10px !important;
+  margin: auto;
+  border-radius: 0px 50px 0px 50px;
+  border-left: 5px solid brown;
+ border-bottom-left-radius: 5em;
+ border-right: 5px solid brown;
+ border-top-right-radius: 5em;
+
+}
+.steps_upgrade_premium{
+  margin-top: 10px !important;
+  border-radius: 0px 50px 0px 50px;
+  border-left: 5px solid brown;
+ border-bottom-left-radius: 5em;
+ border-right: 5px solid brown;
+ border-top-right-radius: 5em;
+
+}
+.payment_img{
+  width: 30% !important;
+  height: 30% !important;
+} 
+.pricing-card-head{
+  height: 60px !important;
+  font-size: 1.5em;
+  padding-top: 1em;
+}
+.last_section{
+  margin-top: 20px !important;
+}
+#faq-heading{
+  text-align: center;
+  margin: auto;
+}
+#request-quote-heading{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.faq{
+  margin: 5%;
+  padding: 5% !important;
+}
+.collapse, .collapsing{
+  margin-left: 5%;
+  margin-right: 5% !important;
+}
+.nav-link{
+  font-size: 1rem;
+}
+
+.instance_dropdown{
+  display: inline-flex; !important;
+}
+.upgrade_steps_wise{
+  color: #e67e22;
+    border: 2px solid #e67e22;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 10px;
+    float: left;
+    font-size: 20px;
+    margin-right: 25px;
+    margin-bottom: 27px;
+}
+.payment_method_inner_divs:hover{
+  transform: scale(1.2);
+}
+#request_Quote{
+  margin-top: 10px;
+  padding: 2em;
+  justify-content: center;
+  border-radius: 0px 50px 0px 50px;
+  border-left: 5px solid brown;
+ border-bottom-left-radius: 5em;
+ border-right: 5px solid brown;
+ border-top-right-radius: 5em;
+}
+#request-quote-checkbox{
+  display: inline-block;
+}
+#request-quote-heading_instance{
+  width:100% !important;
+}
+table tr td{
+  text-align: center;
+}
+table tr th{
+  text-align: center;
+}
+.accordion-item{
+  margin: auto;
+}
+#feature_head{
+	background-color: #E97D68 !important;
+	color: white ;
+}
+.container{
+	padding: 15px;
+	margin: 10px;
+-webkit-box-shadow: 0px 0px 9px 0px rgba(230,225,230,1);
+-moz-box-shadow: 0px 0px 9px 0px rgba(230,225,230,1);
+box-shadow: 0px 0px 9px 0px rgba(230,225,230,1);
+}
+#premium_video{
+	margin-left: 15em;
+}
+#pricing_div_one{
+  margin-left: 17em;
+  margin-right: 0em !important;
+}
+#pricing_div_two{
+  margin-left: 0em !important;
+  margin-right: 15em;
+}
+#mo_faq_button{
+  margin: 2em;
+  margin-left: 38em;
+  background-color: black;
+  color: white;
+  border-color: none !important;
+}
+.mo-nav-link{
+  font-size: 1.2em;
+  color: black;
+}
+.card_module_description{
+  font-size: small;
+}
+#plan_card_divone{
+margin-left: 20em;
+}
+#plan_card_divtwo{
+margin-right: 20em;
+}

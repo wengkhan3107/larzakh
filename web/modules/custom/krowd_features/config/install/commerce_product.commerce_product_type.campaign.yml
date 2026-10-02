@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+id: campaign
+label: Campaign
+description: ''
+variationType: campaign
+injectVariationFields: true
+traits: {  }
+locked: false

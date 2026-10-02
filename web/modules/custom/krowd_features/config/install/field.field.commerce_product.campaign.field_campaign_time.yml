@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.campaign
+    - field.storage.commerce_product.field_campaign_time
+  module:
+    - datetime
+id: commerce_product.campaign.field_campaign_time
+field_name: field_campaign_time
+entity_type: commerce_product
+bundle: campaign
+label: 'Campaign Time'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: relative
+    default_date: '+30 days'
+default_value_callback: ''
+settings: {  }
+field_type: datetime

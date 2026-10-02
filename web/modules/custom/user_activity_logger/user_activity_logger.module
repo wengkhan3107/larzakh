@@ -1,0 +1,104 @@
+<?php
+/**
+ * @file
+ * User activity logger module.
+ */
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_cron().
+ */
+function user_activity_logger_cron()
+{
+  $config = \Drupal::config('user_activity_logger.settings');
+
+  // Skip cleanup if disabled.
+  if (!$config->get('enable_cleanup')) {
+    return;
+  }
+
+  $days = $config->get('keep_logs_days') ?: 30;
+
+  $cutoff = \Drupal::time()->getCurrentTime() - ($days * 24 * 60 * 60);
+
+  \Drupal::database()->delete('user_activity_log')
+    ->condition('timestamp', $cutoff, '<')
+    ->execute();
+  \Drupal::logger('User Activity Logger')->notice('User Activity Log Deleted');
+}
+
+/**
+ * Implements hook_file_download().
+ */
+function user_activity_logger_file_download($uri) {
+  $account = \Drupal::currentUser();
+  if ($account->isAuthenticated()) {
+    \Drupal::database()->insert('user_activity_log')
+      ->fields([
+        'uid' => $account->id(),
+        'activity' => 'file_download',
+        'entity_type' => 'file',
+        'entity_id' => 0,
+        'path' => $uri ?: '-',
+        'timestamp' => \Drupal::time()->getRequestTime(),
+      ])
+      ->execute();
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function user_activity_logger_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'user_activity_logger/link_tracker';
+}
+
+
+/**
+ * Implements hook_entity_insert().
+ */
+function user_activity_logger_entity_insert(EntityInterface $entity)
+{
+  if ($entity->getEntityTypeId() === 'node') {
+    _user_activity_logger_log(\Drupal::currentUser()->id(), 'created node', 'node', $entity->id());
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function user_activity_logger_entity_update(EntityInterface $entity)
+{
+  if ($entity->getEntityTypeId() === 'node') {
+    _user_activity_logger_log(\Drupal::currentUser()->id(), 'updated node', 'node', $entity->id());
+  }
+}
+/**
+ * Implements hook_user_login().
+ */
+function user_activity_logger_user_login(\Drupal\Core\Session\AccountInterface $account)
+{
+  _user_activity_logger_log($account->id(), 'login');
+}
+
+/**
+ * Implements hook_user_logout().
+ */
+function user_activity_logger_user_logout($account)
+{
+  _user_activity_logger_log($account->id(), 'logout');
+}
+
+function _user_activity_logger_log($uid, $activity, $entity_type = NULL, $entity_id = NULL)
+{
+  \Drupal::database()->insert('user_activity_log')
+    ->fields([
+      'uid' => $uid,
+      'activity' => $activity,
+      'entity_type' => $entity_type,
+      'entity_id' => $entity_id,
+      'timestamp' => \Drupal::time()->getCurrentTime(),
+    ])
+    ->execute();
+}
+

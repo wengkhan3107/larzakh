@@ -1,0 +1,40 @@
+{
+    "name": "drupal/og",
+    "description": "API to allow associating content with groups.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://drupal.org/project/og",
+    "support": {
+        "issues": "https://drupal.org/project/issues/og",
+        "slack": "https://drupal.slack.com/messages/CELR48EA0",
+        "source": "https://git.drupalcode.org/project/og"
+    },
+    "authors": [
+        {
+            "name": "amitaibu",
+            "homepage": "https://www.drupal.org/u/amitaibu"
+        },
+        {
+            "name": "mpp",
+            "homepage": "https://www.drupal.org/u/mpp"
+        },
+        {
+            "name": "pfrenssen",
+            "homepage": "https://www.drupal.org/u/pfrenssen"
+        }
+    ],
+    "require-dev": {
+        "drupal/coder": "^8.3.16",
+        "drush/drush": "^11 || ^12.5 || ^13.3",
+        "phpunit/phpunit": "^7 || ^8 || ^9 || ^10.5"
+    },
+    "minimum-stability": "dev",
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": true,
+            "tbachert/spi": true
+        }
+    }
+}

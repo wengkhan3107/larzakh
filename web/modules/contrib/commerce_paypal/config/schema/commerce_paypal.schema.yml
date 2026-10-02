@@ -1,0 +1,243 @@
+commerce_payment.commerce_payment_gateway.plugin.paypal_checkout:
+  type: commerce_payment_gateway_configuration
+  mapping:
+    payment_solution:
+      type: string
+      label: 'PayPal Payment solution'
+    client_id:
+      type: string
+      label: 'Client ID'
+    secret:
+      type: string
+      label: 'Secret'
+    intent:
+      type: string
+      label: 'Intent'
+    disable_funding:
+      type: sequence
+      label: 'Disable funding sources'
+      sequence:
+        type: string
+    disable_card:
+      type: sequence
+      label: 'Disable card types'
+      sequence:
+        type: string
+    shipping_preference:
+      type: string
+      label: 'Shipping preference'
+    update_billing_profile:
+      type: boolean
+      label: 'Update billing profile'
+    update_shipping_profile:
+      type: boolean
+      label: 'Update shipping profile'
+    style:
+      type: mapping
+      label: 'Style'
+      mapping:
+        layout:
+          type: string
+          label: 'Layout'
+        color:
+          type: string
+          label: 'Color'
+        shape:
+          type: string
+          label: 'Shape'
+        label:
+          type: string
+          label: 'Label'
+        tagline:
+          type: boolean
+          label: 'Display tagline'
+    enable_on_cart:
+      type: boolean
+      label: 'Show the Smart payment buttons on the cart page'
+    webhook_id:
+      type: string
+      label: 'The webhook ID'
+    enable_webhook_request_logging:
+      type: boolean
+      label: 'Enable webhook request logging'
+    enable_credit_card_icons:
+      type: boolean
+      label: 'Enable credit card icons'
+    payment_selection_display:
+      type: mapping
+      label: 'Payment selection display'
+      mapping:
+        style:
+          type: string
+          label: 'Style'
+        description:
+          type: string
+          label: 'Description'
+commerce_payment.commerce_payment_gateway.plugin.paypal_express_checkout:
+  type: commerce_payment_gateway_configuration
+  mapping:
+    api_username:
+      type: string
+      label: 'API Username'
+    api_password:
+      type: string
+      label: 'API Password'
+    shipping_prompt:
+      type: string
+      label: 'Shipping address collection'
+    signature:
+      type: string
+      label: 'Signature'
+    solution_type:
+      type: string
+      label: 'Type of checkout flow'
+commerce_payment.commerce_payment_gateway.plugin.paypal_fastlane:
+  type: commerce_payment_gateway_configuration
+  mapping:
+    client_id:
+      type: string
+      label: 'Client ID'
+    secret:
+      type: string
+      label: 'Secret'
+    intent:
+      type: string
+      label: 'Intent'
+    allowed_brands:
+      type: sequence
+      label: 'Allowed brands'
+      sequence:
+        type: string
+    update_billing_profile:
+      type: boolean
+      label: 'Update billing profile'
+    update_shipping_profile:
+      type: boolean
+      label: 'Update shipping profile'
+    webhook_id:
+      type: string
+      label: 'The webhook ID'
+    styles:
+      type: mapping
+      label: 'Styles'
+      mapping:
+        root:
+          type: mapping
+          label: 'Root'
+          mapping:
+            backgroundColor:
+              type: color_hex
+              label: 'Root background color'
+            errorColor:
+              type: color_hex
+              label: 'Root error color'
+            fontFamily:
+              type: string
+              label: 'Root font family'
+            fontSizeBase:
+              type: integer
+              label: 'Root font size base'
+            textColorBase:
+              type: color_hex
+              label: 'Root text color base'
+        input:
+          type: mapping
+          label: 'Input'
+          mapping:
+            backgroundColor:
+              type: color_hex
+              label: 'Input background color'
+            borderRadius:
+              type: integer
+              label: 'Input border radius'
+            borderColor:
+              type: color_hex
+              label: 'Input border color'
+            focusBorderColor:
+              type: color_hex
+              label: 'Input focus border color'
+            borderWidth:
+              type: integer
+              label: 'Input border width'
+            textColorBase:
+              type: color_hex
+              label: 'Input text color base'
+commerce_payment.commerce_payment_gateway.plugin.paypal_payflow:
+  type: commerce_payment_gateway_configuration
+  mapping:
+    partner:
+      type: string
+      label: 'Partner'
+    vendor:
+      type: string
+      label: 'Vendor'
+    user:
+      type: string
+      label: 'User'
+    password:
+      type: string
+      label: 'Password'
+commerce_payment.commerce_payment_gateway.plugin.paypal_payflow_link:
+  type: commerce_payment_gateway_configuration
+  mapping:
+    partner:
+      type: string
+      label: 'Partner'
+    vendor:
+      type: string
+      label: 'Vendor'
+    user:
+      type: string
+      label: 'User'
+    password:
+      type: string
+      label: 'Password'
+    trxtype:
+      type: string
+      label: 'Default transaction type'
+    redirect_mode:
+      type: string
+      label: 'Checkout redirect mode'
+    reference_transactions:
+      type: boolean
+      label: 'Enable reference transactions'
+    emailcustomer:
+      type: boolean
+      label: 'Instruct PayPal to email payment receipts'
+    log:
+      type: mapping
+      label: 'Log API messages'
+      mapping:
+        request:
+          type: string
+          label: 'API request messages'
+        response:
+          type: string
+          label: 'API response messages'
+    cancel_link:
+      type: boolean
+      label: 'Display a cancel link beneath the iframe of an embedded hosted checkout page'
+
+commerce_paypal.credit_messaging_settings:
+  type: config_object
+  label: 'PayPal Credit messaging settings'
+  mapping:
+    client_id:
+      type: string
+      label: 'Client ID'
+    add_to_cart:
+      type: boolean
+      label: 'Enable on add to cart'
+
+commerce_checkout.commerce_checkout_pane.paypal_checkout_payment_process:
+  type: commerce_checkout_pane_configuration
+  mapping:
+    capture:
+      type: boolean
+      label: 'Transaction mode'
+
+commerce_checkout.commerce_checkout_flow.plugin.paypal_checkout:
+  type: commerce_checkout_flow_with_panes_configuration
+
+commerce_checkout.commerce_checkout_flow.plugin.paypal_fastlane:
+  type: commerce_checkout_flow_with_panes_configuration

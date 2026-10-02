@@ -1,0 +1,11 @@
+birthday_wish_mail.admin:
+    title: Birthday wish mail
+    parent: system.admin_config
+    route_name: birthday_wish_mail.admin
+    weight: 70
+
+birthday_wish_mail.settings_advanced:
+    title: Configuration form
+    parent: birthday_wish_mail.admin
+    route_name: birthday_wish_mail.settings_advanced
+    weight: 10

@@ -1,0 +1,88 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for XML Feed Views module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function xmlfeedviews_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.xmlfeedviews':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>';
+      $output .= t('The XML Feed Views module allows site administrators to create any type of XML feed from views.');
+      $output .= '</p>';
+      $output .= '<h3>' . t('Sample') . '</h3>';
+      $output .= '<p>' . t('Got to <a href=":xmlFeedViewsURL" target="_blank">admin/structure/views/view/xmlfeedviews_view</a>', [":xmlFeedViewsURL" => Url::fromRoute('entity.view.edit_form', ['view' => 'xmlfeedviews_view'])->toString()]) . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Prepares variables for XML Feed Views templates.
+ *
+ * Default template: xmlfeedviews.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - view: A ViewExecutable object.
+ *   - rows: The raw row data.
+ */
+function template_preprocess_xmlfeedviews(&$variables) {
+  $view = $variables['view'];
+  $items = $variables['rows'];
+  $style = $view->style_plugin;
+
+  $config = \Drupal::config('system.site');
+
+  // The RSS 2.0 "spec" doesn't indicate HTML can be used in the description.
+  // We strip all HTML tags, but need to prevent double encoding from properly
+  // escaped source data (such as &amp becoming &amp;amp;).
+  $variables['header'] = $style->getHeader();
+  $variables['footer'] = $style->getFooter();
+
+  if ($view->display_handler->getOption('sitename_title')) {
+    $title = $config->get('name');
+    if ($slogan = $config->get('slogan')) {
+      $title .= ' - ' . $slogan;
+    }
+  }
+  else {
+    $title = $view->getTitle();
+  }
+  $variables['title'] = $title;
+  $variables['link'] = Url::fromRoute('<front>')->setAbsolute()->toString();
+  $variables['langcode'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $variables['namespaces'] = new Attribute($style->namespaces);
+  $variables['items'] = $items;
+  $variables['channel_elements'] = $style->channelElements;
+
+  // During live preview we don't want to output the header since the contents
+  // of the feed are being displayed inside a normal HTML page.
+  if (empty($variables['view']->live_preview)) {
+    $variables['view']->getResponse()->headers->set('Content-Type', 'text/xml; charset=utf-8');
+  }
+}
+
+/**
+ * Prepares variables for XML Feed Views item templates.
+ *
+ * Default template: xmlfeedviews-row.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - row: The raw results rows.
+ */
+function template_preprocess_xmlfeedviews_row(&$variables) {
+  $item = $variables['row'];
+  $variables['body_before'] = $item->body_before;
+  $variables['body'] = $item->body;
+  $variables['body_after'] = $item->body_after;
+}

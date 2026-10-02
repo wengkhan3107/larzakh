@@ -1,0 +1,64 @@
+download_count.settings:
+  type: config_object
+  label: 'Download Count Settings'
+  mapping:
+    download_count_excluded_file_extensions:
+      type: string
+      label: 'Excluded File Extensions'
+    download_count_flood_limit:
+      type: integer
+      label: 'Flood Limit'
+    download_count_flood_window:
+      type: integer
+      label: 'Flood Window'
+    download_count_export_range:
+      type: integer
+      label: 'Export Range'
+    date_first_day:
+      type: integer
+      label: 'First day of the week'
+    download_count_details_daily_limit:
+      type: integer
+      label: 'Details Daily Limit'
+    download_count_details_weekly_limit:
+      type: integer
+      label: 'Details Weekly Limit'
+    download_count_details_monthly_limit:
+      type: integer
+      label: 'Details Monthly Limit'
+    download_count_details_yearly_limit:
+      type: integer
+      label: 'Details Yearly Limit'
+    download_count_recent_files_block_limit:
+      type: integer
+      label: 'Recent Files Block Limit'
+    download_count_top_files_block_limit:
+      type: integer
+      label: 'Top Files Block Limit'
+    download_count_sparklines:
+      type: string
+      label: 'Sparklines'
+    download_count_sparkline_min:
+      type: integer
+      label: 'Sparkline Min'
+    download_count_sparkline_height:
+      type: string
+      label: 'Sparkline Height'
+    download_count_sparkline_width:
+      type: string
+      label: 'Sparkline Width'
+    download_count_view_page_items:
+      type: integer
+      label: 'View Page Items'
+    download_count_view_page_title:
+      type: string
+      label: 'View Page Title'
+    download_count_view_page_header:
+      type: string
+      label: 'View Page Header'
+    download_count_view_page_footer:
+      type: string
+      label: 'View Page Footer'
+    download_count_view_page_limit:
+      type: integer
+      label: 'View Page Limit'

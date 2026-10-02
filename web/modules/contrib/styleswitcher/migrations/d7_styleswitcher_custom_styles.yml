@@ -1,0 +1,15 @@
+id: d7_styleswitcher_custom_styles
+label: Custom styles
+migration_tags:
+  - Drupal 7
+  - Configuration
+source:
+  plugin: variable
+  variables:
+    - styleswitcher_custom_styles
+  source_module: styleswitcher
+process:
+  styles: styleswitcher_custom_styles
+destination:
+  plugin: config
+  config_name: styleswitcher.custom_styles

@@ -1,0 +1,15 @@
+{
+    "name": "drupal/dynamic_breadcrumb",
+    "description": "Gives the possibility to use change labels of breadcrumb's items",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://www.drupal.org/project/dynamic_breadcrumb",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/dynamic_breadcrumb",
+        "documentation": "https://www.drupal.org/docs/8/modules/dynamic_breadcrumb",
+        "source": "https://cgit.drupalcode.org/dynamic_breadcrumb"
+    },
+    "require": {
+        "drupal/token": "*"
+    }
+}

@@ -1,0 +1,4 @@
+entity_types:
+  media: media
+  node: node
+  user: user

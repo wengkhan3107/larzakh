@@ -1,0 +1,10 @@
+<div class="hebahan-integriti modal-item">
+  <div class="label" onClick="openModal('{{ fields.uuid.content|striptags|trim }}')">
+    <h5 class="title">{{ fields.title.content }}</h5>
+  </div>
+  <div class="modal" id="{{ fields.uuid.content|striptags|trim }}">
+    {{ fields.field_buletin.content }}</br>
+    {{ fields.field_nombor_siri_buletin.content }}</br>
+    <button id="closeModal">Close Modal</button>
+  </div>
+</div>

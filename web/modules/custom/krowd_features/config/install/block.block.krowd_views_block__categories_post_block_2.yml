@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.categories_post
+  module:
+    - gaviasthemer
+    - system
+    - views
+  theme:
+    - krowd
+third_party_settings:
+  gaviasthemer:
+    classes: ''
+id: krowd_views_block__categories_post_block_2
+theme: krowd
+region: sidebar_right
+weight: -10
+provider: null
+plugin: 'views_block:categories_post-block_2'
+settings:
+  id: 'views_block:categories_post-block_2'
+  label: 'Tags '
+  provider: views
+  label_display: visible
+  views_label: 'Tags '
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: "/services\r\n/services-page\r\n/blogs-masonry\r\n/blogs-grid\r\n/portfolio\r\n/campaigns\r\n/campaigns-grid\r\n/product/add/*"
+    negate: true
+    context_mapping: {  }

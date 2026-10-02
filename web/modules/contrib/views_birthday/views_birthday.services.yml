@@ -1,0 +1,11 @@
+services:
+  views_birthday.date_sql:
+    class: Drupal\views_birthday\Plugin\views\query\MysqlBirthdayDateSql
+    tags:
+      - { name: backend_overridable }
+  pgsql.views_birthday.date_sql:
+    class: Drupal\views_birthday\Plugin\views\query\PostgresqlBirthdayDateSql
+    public: false
+  sqlite.views_birthday.date_sql:
+    class: Drupal\views_birthday\Plugin\views\query\SqliteBirthdayDateSql
+    public: false

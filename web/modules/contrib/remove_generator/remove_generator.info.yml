@@ -1,0 +1,9 @@
+name: Remove Generator
+description: Enable to remove the Generator META tag. No configuration required!
+type: module
+core_version_requirement: ^9.4 || ^10 || ^11
+
+# Information added by Drupal.org packaging script on 2025-04-30
+version: '2.1.0'
+project: 'remove_generator'
+datestamp: 1745978907

@@ -1,0 +1,47 @@
+name: 'Krowd Features'
+description: 'Krowd Features - Import content type, field, view ... for Krowd theme.'
+type: module
+core_version_requirement: ^9 || ^10 || ^11
+dependencies:
+  - admin_toolbar
+  - address
+  - block
+  - block_content
+  - comment
+  - commerce
+  - commerce_checkout
+  - commerce_number_pattern
+  - commerce_order
+  - commerce_payment
+  - commerce_payment_example
+  - commerce_paypal
+  - commerce_price
+  - commerce_product
+  - commerce_store
+  - ctools
+  - datetime
+  - entity_reference_revisions
+  - field
+  - file
+  - gavias_view
+  - gaviasthemer
+  - image
+  - imce
+  - mailchimp_signup
+  - menu_ui
+  - node
+  - options
+  - paragraphs
+  - path
+  - pathauto
+  - profile
+  - system
+  - taxonomy
+  - text
+  - user
+  - views
+  - views_infinite_scroll
+  - webform
+  - config_update
+  - features
+version: '2.0.0'

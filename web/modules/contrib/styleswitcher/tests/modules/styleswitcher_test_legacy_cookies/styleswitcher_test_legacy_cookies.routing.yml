@@ -1,0 +1,10 @@
+styleswitcher_test_legacy_cookies.cookie_setter:
+  path: '/styleswitcher-test-legacy-cookies/{version}'
+  defaults:
+    _controller: '\Drupal\styleswitcher_test_legacy_cookies\Controller\Controller::cookieSetter'
+    _title: 'Style Switcher Cookie Setter'
+  options:
+    no_cache: TRUE
+  requirements:
+    # @codingStandardsIgnoreLine
+    _access: 'TRUE'

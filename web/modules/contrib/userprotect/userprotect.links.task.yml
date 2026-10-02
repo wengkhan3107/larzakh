@@ -1,0 +1,16 @@
+userprotect.rule_edit:
+  title: 'Edit'
+  route_name: userprotect.rule_edit
+  base_route: userprotect.rule_edit
+
+userprotect.rule_list:
+  title: List
+  route_name: userprotect.rule_list
+  base_route: userprotect.rule_list
+  weight: 0
+
+userprotect.settings_tab:
+  title: 'Settings'
+  route_name: userprotect.settings
+  base_route: userprotect.rule_list
+  weight: 10

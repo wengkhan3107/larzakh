@@ -1,0 +1,6 @@
+services:
+  _defaults:
+    autoconfigure: true
+    autowire: true
+  download_count_subscriber:
+    class: Drupal\download_count\EventSubscriber\DownloadCountSubscriber

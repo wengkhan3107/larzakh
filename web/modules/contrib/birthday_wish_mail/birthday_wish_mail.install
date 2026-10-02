@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * Install, and uninstall functions for birthday_wish_mail module.
+ */
+
+/**
+ * Implements hook_schema().
+ *
+ * Defines the database tables used by this module.
+ *
+ * @see hook_schema()
+ *
+ * @ingroup birthday_wish_mail
+ */
+function birthday_wish_mail_schema() {
+  $schema['birthday_wish_mail'] = [
+    'description' => 'Stores example person entries for demonstration purposes.',
+    'fields' => [
+      'pid' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Just serial number.',
+      ],
+      'mail' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Email address.',
+      ],
+      'created' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => "Save created date",
+      ],
+    ],
+    'primary key' => ['pid'],
+    'indexes' => [
+      'mail' => ['mail'],
+      'created' => ['created'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function birthday_wish_mail_uninstall() {
+  \Drupal::database()->schema()->dropTable('birthday_wish_mail');
+}

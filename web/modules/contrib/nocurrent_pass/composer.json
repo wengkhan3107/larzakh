@@ -1,0 +1,41 @@
+{
+  "name": "drupal/nocurrent_pass",
+  "description": "This module makes the 'current password' field on the user edit form optional.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "keywords": ["Drupal"],
+  "homepage": "https://www.drupal.org/project/nocurrent_pass",
+  "authors": [
+    {
+      "name": "Darrell Duane (DarrellDuane)",
+      "homepage": "https://www.drupal.org/u/darrellduane",
+      "role": "Maintainer"
+    },
+    {
+      "name": "David Czinege (david.czinege)",
+      "homepage": "https://www.drupal.org/u/davidczinege",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Wes Jones (earthday47)",
+      "homepage": "https://www.drupal.org/u/earthday47",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Andrew Zahura (shkiper)",
+      "homepage": "https://www.drupal.org/u/shkiper",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Viktor Holovachek (AstonVictor)",
+      "homepage": "https://www.drupal.org/u/astonvictor",
+      "role": "Maintainer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/nocurrent_pass",
+    "source": "https://git.drupalcode.org/project/nocurrent_pass"
+  },
+  "require": { }
+}

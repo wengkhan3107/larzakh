@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.campaigns
+  module:
+    - gaviasthemer
+    - views
+  theme:
+    - krowd
+third_party_settings:
+  gaviasthemer:
+    classes: ''
+id: krowd_views_block__campaigns_block_7_2
+theme: krowd
+region: user_content
+weight: 0
+provider: null
+plugin: 'views_block:campaigns-block_7'
+settings:
+  id: 'views_block:campaigns-block_7'
+  label: 'Campaigns Published'
+  provider: views
+  label_display: visible
+  views_label: 'Campaigns Published'
+  items_per_page: none
+  context_mapping: {  }
+visibility: {  }

@@ -1,0 +1,10 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+function krowd_sub_preprocess_html(array &$variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name === 'user.login' || $route_name === 'user.pass') {
+    $variables['#attached']['library'][] = 'krowd_sub/login-styling';
+  }
+}

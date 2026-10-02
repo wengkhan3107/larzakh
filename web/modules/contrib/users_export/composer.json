@@ -1,0 +1,28 @@
+{
+  "name": "drupal/users_export",
+  "description": "Export your users to a flat file of various types.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "keywords": ["Drupal"],
+  "homepage": "https://www.drupal.org/project/users_export",
+  "authors": [
+    {
+      "name": "Aaron Klump (aklump)",
+      "homepage": "https://www.drupal.org/user/142422",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Viktor Holovachek (AstonVictor)",
+      "homepage": "https://www.drupal.org/u/astonvictor",
+      "role": "Maintainer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/users_export",
+    "source": "https://git.drupalcode.org/project/users_export"
+  },
+  "require": {
+    "drupal/views_data_export": "^1.4"
+  }
+}

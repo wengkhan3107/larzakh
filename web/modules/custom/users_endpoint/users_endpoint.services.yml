@@ -1,0 +1,21 @@
+services:
+  users_endpoint.users_api_resource:
+    class: Drupal\users_endpoint\Plugin\rest\resource\UserApiResource
+    arguments: ['@logger.channel.default']
+    tags:
+      - { name: rest.resource }
+  users_endpoint.user_list_resource:
+    class: Drupal\users_endpoint\Plugin\rest\resource\UserListResource
+    arguments: ['@logger.channel.default']
+    tags:
+      - { name: rest.resource }
+  users_endpoint.user_detail_resource:
+    class: Drupal\users_endpoint\Plugin\rest\resource\UserDetailResource
+    arguments: ['@entity_type.manager','@logger.channel.default']
+    tags:
+      - { name: rest.resource }
+  users_endpoint.profile_list_resource:
+    class: Drupal\users_endpoint\Plugin\rest\resource\ProfileListResource
+    arguments: ['@logger.channel.default']
+    tags:
+      - { name: rest.resource }

@@ -1,0 +1,7 @@
+clock-style:
+  version: 1.x
+  js:
+    js/timezone.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copied from https://git.drupalcode.org/project/gitlab_templates/-/blob/1.0.x/scripts/phpcs.xml.dist
+  with DrupalPractice standard addition. -->
+<ruleset name="drupal-styleswitcher">
+  <description>PHP CodeSniffer configuration for the Style Switcher Drupal module.</description>
+  <rule ref="Drupal"/>
+  <rule ref="DrupalPractice"/>
+  <arg name="extensions" value="php,module,install,yml"/>
+</ruleset>

@@ -1,0 +1,111 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.campaign
+    - core.entity_view_mode.commerce_product.teaser_2
+    - field.field.commerce_product.campaign.body
+    - field.field.commerce_product.campaign.field_campaign_category
+    - field.field.commerce_product.campaign.field_campaign_comment
+    - field.field.commerce_product.campaign.field_campaign_featured
+    - field.field.commerce_product.campaign.field_campaign_goal
+    - field.field.commerce_product.campaign.field_campaign_images
+    - field.field.commerce_product.campaign.field_campaign_start
+    - field.field.commerce_product.campaign.field_campaign_time
+    - field.field.commerce_product.campaign.field_campaign_update
+    - field.field.commerce_product.campaign.field_campaign_video
+  module:
+    - commerce_price
+    - datetime
+    - image
+    - text
+id: commerce_product.campaign.teaser_2
+targetEntityType: commerce_product
+bundle: campaign
+mode: teaser_2
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 1
+    settings:
+      trim_length: 100
+    third_party_settings: {  }
+    region: content
+  field_campaign_category:
+    weight: 2
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_campaign_featured:
+    weight: 3
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_campaign_goal:
+    weight: 4
+    label: hidden
+    settings:
+      strip_trailing_zeroes: false
+      currency_display: symbol
+    third_party_settings: {  }
+    type: commerce_price_default
+    region: content
+  field_campaign_images:
+    weight: 5
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_campaign_start:
+    weight: 6
+    label: hidden
+    settings:
+      strip_trailing_zeroes: false
+      currency_display: symbol
+    third_party_settings: {  }
+    type: commerce_price_default
+    region: content
+  field_campaign_time:
+    weight: 7
+    label: hidden
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_campaign_video:
+    weight: 8
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  title:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_campaign_comment: true
+  field_campaign_update: true
+  stores: true
+  uid: true
+  variations: true

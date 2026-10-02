@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Main hooks for Features module.
+ */
+
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\features\Hook\FeaturesHooks;
+
+/**
+ * Implements hook_file_download().
+ */
+#[LegacyHook]
+function features_file_download($uri) {
+  return \Drupal::service(FeaturesHooks::class)->fileDownload($uri);
+}
+
+/**
+ * Implements hook_modules_installed().
+ */
+#[LegacyHook]
+function features_modules_installed($modules) {
+  \Drupal::service(FeaturesHooks::class)->modulesInstalled($modules);
+}

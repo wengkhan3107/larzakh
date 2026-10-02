@@ -1,0 +1,278 @@
+<?php
+
+/**
+ * @file
+ * Controls assigning colors to entities.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Get the config object.
+ *
+ * @param string $entity
+ *   The entity type
+ *
+ * @return \Drupal\Core\Config\Config|null
+ */
+function colors_get_info($entity = NULL) {
+  $config = NULL;
+  if ($entity) {
+    $config = \Drupal::configFactory()->getEditable($entity);
+  }
+  $config = (!$entity || !$config)  ? \Drupal::configFactory()->getEditable('colors.settings') : $config;
+
+   return $config;
+}
+
+/**
+ * Retrieves the color palette for a particular theme.
+ */
+function colors_get_palette($config) {
+  return $config->get('palette');
+}
+
+/**
+ * Retrieves the order of entities.
+ */
+function colors_get_order($config) {
+  return $config->get('order');
+}
+
+/**
+ * Retrieves config entities.
+ *
+ * @param string $entity
+ *
+ * @return array
+ */
+function colors_get_enabled($entity) {
+  $configs = [];
+  foreach (\Drupal::configFactory()->listAll("colors.$entity") as $key) {
+    $config = \Drupal::configFactory()->getEditable($key);
+    if ($config->get('enabled')) {
+      $configs[$key] = $config;
+    }
+  }
+
+  return $configs;
+}
+
+/**
+ * Load the color picker.
+ *
+ * @return array
+ */
+function colors_load_colorpicker() {
+  return [
+    'color_picker' => [
+      '#prefix' => '<div id="colors-colorpicker">',
+      '#suffix' => '</div>',
+    ],
+  ];
+}
+
+/**
+ * Get the weights of entities.
+ *
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ *
+ * @return array|false
+ */
+function colors_get_weights(FormStateInterface $form_state) {
+  $entities = $form_state->getValue('entities');
+  $values = [];
+  foreach (array_values($entities) as $value) {
+    $values[] = $value['weight'];
+  }
+  return array_combine(array_keys($entities), $values);
+}
+
+/**
+ * Implements hook_colors_classes().
+ */
+function colors_colors_classes($entity) {
+  $classes = [];
+  $types = colors_get_config_keys($entity);
+  foreach($types as $type) {
+    $classes = array_merge($classes, colors_get_class_names($type));
+  }
+
+  return $classes;
+}
+
+/**
+ * Implements hook_colors_palette().
+ */
+function colors_colors_palette($entity) {
+  $palettes = [];
+  $types = colors_get_config_keys($entity);
+  foreach ($types as $type) {
+    $configs = colors_get_enabled($type);
+    if ($configs) {
+      foreach ($configs as $config) {
+        $palettes[] = colors_get_palette($config);
+      }
+    }
+  }
+  return $palettes;
+}
+
+/**
+ * Retrieve all possible config entity keys for an entity.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The current entity.
+ *
+ * @return array
+ */
+function colors_get_config_keys($entity) {
+  $types = [];
+  /** @var \Drupal\Core\Entity\EntityInterface $entity */
+  switch($entity->getEntityTypeId()) {
+    case 'node':
+      $types[] = 'node.' . $entity->bundle();
+      break;
+    case 'taxonomy_vocabulary':
+      $types[] = 'vocabulary';
+      break;
+    case 'user':
+      $types[] = 'user_current';
+      $types[] = 'user_role';
+      $types[] = 'user';
+      break;
+  }
+
+  return $types;
+}
+
+/**
+ * Retrieves class names for an entity.
+ *
+ * @param string $entity
+ *   The id of the entity
+ *
+ * @return array
+ */
+function colors_get_class_names($entity) {
+  $classes = [];
+  $configs = colors_get_enabled($entity);
+  if (!empty($configs)) {
+    $keys = array_keys($configs);
+    foreach ($keys as $key) {
+      $classes[] = str_replace(".", "-", $key);
+    }
+
+  }
+
+  $classes = array_map(['\Drupal\Component\Utility\Html', 'getClass'], $classes);
+
+  return $classes;
+}
+
+/**
+ * Retrieves the color mapping of the config entity palette to css properties.
+ *
+ * @return array
+ */
+function colors_colors_get_color_mapping() {
+  return [
+    'bg' => 'background-color',
+    'borders' => 'border-color',
+    'text' => 'color',
+  ];
+}
+/**
+ * Gets all the color options.
+ *
+ * @param string $module
+ *   The name of the module to invoke the hook with.
+ *
+ * @return
+ *   Array containing all the possible colorable features.
+ */
+function colors_get_color_options($module = 'colors') {
+  return array_keys(
+    \Drupal::service('module_handler')->invoke($module, 'colors_get_color_mapping')
+  );
+}
+
+/**
+ * Retrieves or generates a CSS with a given module's selector.
+ *
+ * @param string $caller
+ *   A module that implements hook_colors_build_selector().
+ *
+ * @return string
+ *   The generated CSS.
+ */
+function colors_create_css($caller) {
+    $config = \Drupal::configFactory()->getEditable('colors.settings');
+    $order = $config->get('order');
+
+    $plugins = \Drupal::service('plugin.manager.colors')
+      ->getDefinitions();
+    $order['node'] = 0;
+    $order['vocabulary'] = 1;
+
+    $css = [];
+    foreach ($plugins as $entity => $plugin) {
+      if (isset($order[$entity])) {
+        $css[$order[$entity]][] = colors_get_class_names($entity);
+      }
+    }
+
+    ksort($css);
+
+    $classes = [];
+    foreach ($css as $groups) {
+      $array = [];
+      foreach ($groups as $group) {
+        $array = array_merge($array, $group);
+      }
+
+      $classes = array_merge($classes, $array);
+    }
+
+  $config = colors_get_info();
+  $colors = colors_get_palette($config);
+
+  $css = colors_build_css($classes, $colors, $caller);
+
+  return $css;
+}
+
+/**
+ * Builds a CSS string based on a selector and a color configuration.
+ *
+ * @param array $selectors
+ *   The selector used to build the CSS string.
+ * @param array $colors
+ *   The color configuration used to build the CSS string.
+ * @param string $module
+ *   The name of the module.
+ *
+ * @return
+ *   The constructed CSS string.
+ */
+function colors_build_css($selectors, $colors, $module = 'colors') {
+  // Fetch color mapping.
+  $color_mapping = \Drupal::moduleHandler()->invoke('colors', 'colors_get_color_mapping');
+
+  $css = [];
+
+  // Rewrite the selector if needed
+  foreach ($selectors as $selector) {
+    $_css = \Drupal::moduleHandler()->invoke($module, 'colors_build_selector', [$selector]);
+    $_css .= ' {';
+    foreach ($colors as $option => $color) {
+      $_css .= $color_mapping[$option] . ': ' . $color . ';';
+    }
+    $_css .= ' } ';
+
+    $css[] = $_css;
+  }
+
+  return implode("\n", $css);
+}

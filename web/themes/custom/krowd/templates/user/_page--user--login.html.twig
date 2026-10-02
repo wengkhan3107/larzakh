@@ -1,0 +1,49 @@
+{#
+/**
+ * @file
+ * Gavias's theme implementation to display a single Drupal page.
+ */
+#}
+<div class="page-user-login gva-body-page body-page">
+   <div class="bg"></div>
+   <div role="main" class="main main-page">
+      <div class="branding text-center">
+         {% if page.branding %}
+            {{ page.branding }}
+         {% endif %}
+
+      </div>
+      <div class="page-use-main-content">
+         {% if page.help %}
+            <div class="help show">
+               <div class="container">
+                  <div class="content-inner">
+                     {{ page.help }}
+                  </div>
+               </div>
+            </div>
+         {% endif %}
+         <div class="clearfix"></div>
+         <div id="content" class="content content-full">
+            {% if page.content %}
+               <div class="content-main">
+                  {{ page.content }}
+               </div>
+            {% endif %}
+
+            <div class="myworks-login">
+                 <div class="myworks-login-title">
+                     Pengumuman
+                 </div> 
+                 <div class="myworks-login-des">
+                     Bagi MyWorks Versi baharu, Bagi log masuk Pengguna, USERNAME dan KATALALUAN adalah sama, Pengguna disarankan untuk menukar setelah berjaya log masuk ke dalam sistem MyWorks <br><br>
+
+                     Sekiranya Terdapat permasalahan dan masih gagal bagi log masuk ke dalam MyWorks,
+                     Sila hubungi <b>03-27714515</b> bagi sebarang pertanyaan dan khidmat sokongan. <br> Terima Kasih
+                 </div> 
+            </div>
+
+         </div>
+      </div>   
+   </div>
+</div>

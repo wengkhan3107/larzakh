@@ -1,0 +1,49 @@
+<?php
+function user_activity_logger_schema()
+{
+  $schema['user_activity_log'] = [
+    'description' => 'Stores user activity logs.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'uid' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'User ID',
+      ],
+      'activity' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'Type of activity',
+      ],
+      'entity_type' => [
+        'type' => 'varchar',
+        'length' => 64,
+        'description' => 'Entity type if relevant',
+      ],
+      'entity_id' => [
+        'type' => 'int',
+        'description' => 'Entity ID if relevant',
+      ],
+      'timestamp' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'When the activity occurred',
+      ],
+      'path' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'description' => 'Visited path or route.',
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'uid' => ['uid'],
+    ],
+  ];
+  return $schema;
+}

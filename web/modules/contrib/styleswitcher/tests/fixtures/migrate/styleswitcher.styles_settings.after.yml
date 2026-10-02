@@ -1,0 +1,21 @@
+settings:
+  bortik:
+    custom/default:
+      weight: -1
+      status: true
+      is_default: true
+    theme/green_text:
+      weight: 1
+      status: true
+    custom/default_1:
+      weight: -1
+      status: false
+  se7en:
+    theme/headless_design:
+      weight: 0
+      status: true
+      is_default: true
+    custom/default:
+      weight: 10
+      status: false
+      is_default: false

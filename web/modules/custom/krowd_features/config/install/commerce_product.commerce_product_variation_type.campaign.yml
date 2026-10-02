@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: campaign
+label: Campaign
+orderItemType: default
+generateTitle: true
+traits: {  }
+locked: false

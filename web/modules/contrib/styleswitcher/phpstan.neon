@@ -1,0 +1,18 @@
+# Configuration file for PHPStan static code checking, see https://phpstan.org .
+# Copied from core/phpstan.neon.dist .
+includes:
+  - phar://phpstan.phar/conf/bleedingEdge.neon
+
+parameters:
+  level: 1
+
+  paths:
+    - .
+
+  excludePaths:
+    # Skip test fixtures.
+    - tests/fixtures/**/*.php
+
+  ignoreErrors:
+    # new static() is a best practice in Drupal.
+    - "#^Unsafe usage of new static#"

@@ -1,0 +1,38 @@
+miniorange_saml_idp.settings:
+  type: config_object
+  label: Settings
+  mapping:
+    miniorange_saml_idp_customer_admin_email:
+      type: string
+    miniorange_saml_customer_id:
+      type: string
+    miniorange_saml_customer_admin_token:
+      type: string
+    miniorange_saml_customer_api_key:
+      type: string
+    miniorange_saml_idp_name:
+      type: string
+    miniorange_saml_idp_login_url:
+      type: string
+    miniorange_saml_idp_x509_certificate:
+      type: string
+    miniorange_saml_status:
+      type: string
+    miniorange_saml_customer_admin_phone:
+      type: string
+    miniorange_saml_idp_entity_id:
+      type: string
+    miniorange_saml_idp_acs_url:
+      type: string
+    miniorange_saml_idp_nameid_attr_map:
+      type: string
+    redirect_plan_after_registration_premium:
+      type: string
+    miniorange_saml_idp_entity_id_issuer:
+      type: string
+    miniorange_saml_idp_relay_state:
+      type: string
+    miniorange_saml_idp_nameid_format:
+      type: string
+    miniorange_saml_idp_assertion_signed:
+      type: boolean

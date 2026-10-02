@@ -1,0 +1,9 @@
+/recipes/
+/vendor/
+/web/
+/.editorconfig
+/.gitattributes
+/.prettierignore
+/.prettierrc.json
+/phpstan.neon
+/phpstan-baseline.neon

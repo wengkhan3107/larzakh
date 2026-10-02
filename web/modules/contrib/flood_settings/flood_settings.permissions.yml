@@ -1,0 +1,3 @@
+manage flood settings:
+  title: 'Manage flood settings'
+  description: 'Manage ban settings for failed login attempts.'

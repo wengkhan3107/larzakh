@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Template for fully configurable digital clock.
+ *
+ * Available variables:
+ * - block_id: Unique identifier for the clock.
+ * - config: Complete configuration array.
+ */
+#}
+<div class="digital-clock-wrapper" 
+     id="{{ block_id }}" 
+     data-config="{{ config|json_encode|e('html_attr') }}"
+     style="max-width: {{ config.clock_width }}px;">
+  <div class="digital-clock" data-clock-type="digital">
+    <div class="digital-time">00:00:00</div>
+    {% if config.show_date %}
+      <div class="digital-date">January 1, 2024</div>
+    {% endif %}
+    {% if config.show_day %}
+      <div class="digital-day">Monday</div>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,11 @@
+name: 'Style Switcher'
+description: 'Allows website visitors to choose which stylesheet they would like to view the site with.'
+core_version_requirement: ^9.5 || ^10 || ^11
+package: 'User interface'
+configure: styleswitcher.admin
+type: module
+
+# Information added by Drupal.org packaging script on 2024-08-07
+version: '8.x-2.4'
+project: 'styleswitcher'
+datestamp: 1723042637

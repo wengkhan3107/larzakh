@@ -1,0 +1,137 @@
+miniorange_saml_idp.customer_setup:
+  path: /admin/config/people/miniorange_saml_idp/customer_setup
+  defaults:
+    _title: 'miniOrange SAML IDP &nbsp;<a class="button button--primary js-form-submit form-submit use-ajax" href="request_trial">Request 7-days Trial</a><a class="button button--primary js-form-submit form-submit use-ajax mo_top_bar_button" href="contact_us">Contact Us</a>'
+    _form: \Drupal\miniorange_saml_idp\Form\MiniorangeSamlCustomerSetup
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.sp_setup:
+  path: /admin/config/people/miniorange_saml_idp/sp_setup
+  defaults:
+    _title: 'miniOrange SAML IDP &nbsp;<a class="button button--primary js-form-submit form-submit use-ajax" href="request_trial">Request 7-days Trial</a><a class="button button--primary js-form-submit form-submit use-ajax mo_top_bar_button" href="contact_us">Contact Us</a>'
+    _form: \Drupal\miniorange_saml_idp\Form\MiniorangeSpInformation
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.idp_setup:
+  path: /admin/config/people/miniorange_saml_idp/idp_setup
+  defaults:
+    _title: 'miniOrange SAML IDP &nbsp;<a class="button button--primary js-form-submit form-submit use-ajax" href="request_trial">Request 7-days Trial</a><a class="button button--primary js-form-submit form-submit use-ajax mo_top_bar_button" href="contact_us">Contact Us</a>'
+    _form: \Drupal\miniorange_saml_idp\Form\MiniorangeIdpSetup
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.mapping:
+  path: /admin/config/people/miniorange_saml_idp/Mapping
+  defaults:
+    _title: 'miniOrange SAML IDP &nbsp;<a class="button button--primary js-form-submit form-submit use-ajax" href="request_trial">Request 7-days Trial</a><a class="button button--primary js-form-submit form-submit use-ajax mo_top_bar_button" href="contact_us">Contact Us</a>'
+    _form: \Drupal\miniorange_saml_idp\Form\Mapping
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.advance_settings:
+  path: /admin/config/people/miniorange_saml_idp/advance_settings
+  defaults:
+    _title: 'miniOrange SAML IDP &nbsp;<a class="button button--primary js-form-submit form-submit use-ajax" href="request_trial">Request 7-days Trial</a><a class="button button--primary js-form-submit form-submit use-ajax mo_top_bar_button" href="contact_us">Contact Us</a>'
+    _form: \Drupal\miniorange_saml_idp\Form\MiniorangeAdvanceSettings
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.licensing:
+  path: /admin/config/people/miniorange_saml_idp/Licensing
+  defaults:
+    _title: 'miniOrange SAML IDP &nbsp;<a class="button button--primary js-form-submit form-submit use-ajax" href="request_trial">Request 7-days Trial</a><a class="button button--primary js-form-submit form-submit use-ajax mo_top_bar_button" href="contact_us">Contact Us</a>'
+    _form: \Drupal\miniorange_saml_idp\Form\MiniorangeLicensing
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.miniorange_saml_idp_login_request:
+  path: /initiatelogon
+  defaults:
+    _controller: '\Drupal\miniorange_saml_idp\Controller\MiniorangeSamlIdpController::miniorangeSamlIdpLoginRequest'
+  requirements:
+    _access: 'TRUE'
+
+miniorange_saml_idp.miniorange_saml_idp_metadata:
+  path: /moidp_metadata
+  defaults:
+    _controller: '\Drupal\miniorange_saml_idp\Controller\MiniorangeSamlIdpController::miniorangeSamlIdpMetadata'
+  requirements:
+    _access: 'TRUE'
+
+miniorange_saml_idp.miniorange_saml_idp_metadata_download:
+  path: /moidp_metadata_download
+  defaults:
+    _controller: '\Drupal\miniorange_saml_idp\Controller\MiniorangeSamlIdpController::miniorangeSamlIdpMetadataDownload'
+  requirements:
+    _access: 'TRUE'
+
+miniorange_saml_idp.miniorange_saml_idp_certificate_download:
+  path: /moidp_certificate_download
+  defaults:
+    _controller:  '\Drupal\miniorange_saml_idp\Controller\MiniorangeSamlIdpController::miniorangeSamlIdpCertificateDownload'
+  requirements:
+    _access: 'TRUE'
+
+miniorange_saml_idp.test_configuration:
+  path: /idpTestConfig
+  defaults:
+    _controller: '\Drupal\miniorange_saml_idp\Controller\MiniorangeSamlIdpController::testConfiguration'
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.modal_form:
+  path: /removeLicenseKey
+  defaults:
+    _title: 'miniorange SAML Remove License'
+    _controller: '\Drupal\miniorange_saml_idp\Controller\MiniorangeSamlIdpController::openModalForm'
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.request_demo:
+  path: /admin/config/people/miniorange_saml_idp/request_trial
+  defaults:
+    _title: 'miniorange SAML IDP Request Demo'
+    _controller: '\Drupal\miniorange_saml_idp\Controller\MiniorangeSamlIdpController::openDemoRequestForm'
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.contact_us:
+    path: /admin/config/people/miniorange_saml_idp/contact_us
+    defaults:
+        _title: 'miniorange SAML IDP contact us'
+        _controller: '\Drupal\miniorange_saml_idp\Controller\MiniorangeSamlIdpController::openContactUsForm'
+    requirements:
+        _permission: 'administer site configuration'
+
+miniorange_saml_idp.add_new_sp:
+  path: /admin/config/people/miniorange_saml_idp/add_new_sp
+  defaults:
+    _controller: '\Drupal\miniorange_saml_idp\Controller\MiniorangeSamlIdpController::addNewSp'
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.generate_certificate:
+  path: /admin/config/people/miniorange_saml_idp/generate_certificate
+  defaults:
+    _title: 'Generate Custom Certificates [Premium]'
+    _form: \Drupal\miniorange_saml_idp\Form\MiniorangeGenerateCertificate
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.confirm_delete_sp:
+  path: /admin/config/people/miniorange_saml_idp/confirm_delete_sp
+  defaults:
+    _title: 'Delete SP Configuration'
+    _form: \Drupal\miniorange_saml_idp\Form\ConfirmDeleteConfiguration
+  requirements:
+    _permission: 'administer site configuration'
+
+miniorange_saml_idp.confirm_generate_certificate:
+  path: /admin/config/people/miniorange_saml_idp/confirm_generate_certificate
+  defaults:
+    _title: 'Generate New Certificates'
+    _form: \Drupal\miniorange_saml_idp\Form\ConfirmGenerateCertificate
+  requirements:
+    _permission: 'administer site configuration'

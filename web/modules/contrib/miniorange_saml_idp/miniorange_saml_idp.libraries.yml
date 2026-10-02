@@ -1,0 +1,44 @@
+miniorange_saml_idp.admin:
+  version: VERSION
+  css:
+    layout:
+      css/miniorange_saml_idp.admin.css: {}
+      css/miniorange_saml_idp.module.css: {}
+      css/miniorange_saml_licensing.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+
+miniorange_saml_idp.main:
+  version: VERSION
+  css:
+    layout:
+      css/mo_saml_idp_bootstrap_css.css: {}
+      css/mo_saml_idp_upgrade_plan_css.css: {}
+  js:
+    js/mo_saml_idp_bootstrap_js.js: {}
+    js/mo_saml_idp_upgrade_plan_js.js: {}
+
+
+miniorange_saml_idp.test:
+  version: VERSION
+  js:
+    js/testIdpConfig.js: {}
+
+
+miniorange_saml_idp_copy.icon:
+  version: VERSION
+  js:
+    js/addCopyIcon.js: {}
+
+miniorange_saml_idp.register:
+  version: VERSION
+  js:
+    js/register.js: {}
+
+mo_saml_pricing:
+  version: 1.x
+  js:
+    js/twigtemplate.js: {}
+  dependencies:
+    - core/jquery

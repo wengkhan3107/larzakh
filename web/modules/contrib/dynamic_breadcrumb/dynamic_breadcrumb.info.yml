@@ -1,0 +1,13 @@
+name: 'Dynamic Breadcrumb'
+type: module
+description: 'Provide dynamic breadcrumb'
+core_version_requirement: ^8 || ^9 || ^10
+package: 'Breadcrumb'
+
+dependencies:
+  - token:token
+
+# Information added by Drupal.org packaging script on 2022-08-16
+version: '8.x-1.4'
+project: 'dynamic_breadcrumb'
+datestamp: 1660680813

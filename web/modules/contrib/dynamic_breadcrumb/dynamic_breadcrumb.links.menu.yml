@@ -1,0 +1,17 @@
+dynamic_breadcrumb.admin:
+  title: "Dynamic Breadcrumb"
+  description: "Dynamic breadcrumb settings"
+  parent: system.admin_config_ui
+  route_name: dynamic_breadcrumb.admin
+dynamic_breadcrumb.entity_types:
+  title: 'Entity Types Settings'
+  route_name: dynamic_breadcrumb.dynamic_breadcrumb_entity_types_form
+  description: 'Dynamic Breadcrumb entity types configuration form'
+  parent: dynamic_breadcrumb.admin
+  weight: 1
+dynamic_breadcrumb.config_form:
+  title: 'Breadcrumbs settings'
+  route_name: dynamic_breadcrumb.dynamic_breadcrumb_config_form
+  description: 'Breadcrumb labels configuration'
+  parent: dynamic_breadcrumb.admin
+  weight: 2

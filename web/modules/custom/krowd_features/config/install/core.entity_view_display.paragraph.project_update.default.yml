@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.project_update.field_update_content
+    - field.field.paragraph.project_update.field_update_date
+    - field.field.paragraph.project_update.field_update_title
+    - paragraphs.paragraphs_type.project_update
+  module:
+    - text
+id: paragraph.project_update.default
+targetEntityType: paragraph
+bundle: project_update
+mode: default
+content:
+  field_update_content:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_update_date:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_update_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

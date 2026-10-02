@@ -1,0 +1,7 @@
+styleswitcher_test_theme_per_page.demo:
+  path: '/styleswitcher-test-theme-per-page/{theme}'
+  defaults:
+    _controller: '\Drupal\styleswitcher_test_theme_per_page\Controller\Controller::demo'
+    _title_callback: 'theme_handler:getName'
+  requirements:
+    _access_theme: 'TRUE'

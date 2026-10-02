@@ -1,0 +1,8 @@
+user_activity_logger.admin:
+  title: "User Activity Logs"
+  description: "View user activity logs"
+  parent: system.admin_reports
+  route_name: user_activity_logger.logs
+  weight: 100
+  requirements:
+    _permission: "view user activity logs"

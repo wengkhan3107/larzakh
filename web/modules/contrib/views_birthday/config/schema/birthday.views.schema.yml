@@ -1,0 +1,5 @@
+views.filter.birthday:
+  type: views.filter.datetime
+
+views.filter_value.birthday:
+  type: views.filter_value.datetime

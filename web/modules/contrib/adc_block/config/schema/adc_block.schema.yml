@@ -1,0 +1,190 @@
+# Schema for Analog Clock Block
+block.block.*.settings.adc_block_block:
+  type: mapping
+  label: 'Analog Clock block settings'
+  mapping:
+    num_places:
+      type: integer
+      label: 'Number of places'
+    layout:
+      type: string
+      label: 'Layout'
+    timezone:
+      type: string
+      label: 'Timezone'
+    heading:
+      type: string
+      label: 'Heading'
+    footer:
+      type: string
+      label: 'Footer'
+    majorTicksWidth:
+      type: float
+      label: 'Major ticks width'
+    minorTicksWidth:
+      type: float
+      label: 'Minor ticks width'
+    minuteHandWidth:
+      type: float
+      label: 'Minute hand width'
+    hourHandWidth:
+      type: float
+      label: 'Hour hand width'
+    fillColor:
+      type: string
+      label: 'Fill color'
+    fillColor_transparent:
+      type: boolean
+      label: 'Fill color transparent'
+    hasShadow:
+      type: boolean
+      label: 'Has shadow'
+    shadowColor:
+      type: string
+      label: 'Shadow color'
+    borderColor:
+      type: string
+      label: 'Border color'
+    borderWidth:
+      type: float
+      label: 'Border width'
+    fontColor:
+      type: string
+      label: 'Font color'
+    fontWeight:
+      type: string
+      label: 'Font weight'
+    pinColor:
+      type: string
+      label: 'Pin color'
+    majorTicksColor:
+      type: string
+      label: 'Major ticks color'
+    majorTicksColor_transparent:
+      type: boolean
+      label: 'Major ticks color transparent'
+    minorTicksColor_transparent:
+      type: boolean
+      label: 'Minor ticks color transparent'
+    minorTicksColor:
+      type: string
+      label: 'Minor ticks color'
+    hourHandColor:
+      type: string
+      label: 'Hour hand color'
+    minuteHandColor:
+      type: string
+      label: 'Minute hand color'
+    secondHandColor:
+      type: string
+      label: 'Second hand color'
+    secondHandWidth:
+      type: float
+      label: 'Second hand width'
+    secondHandLength:
+      type: float
+      label: 'Second hand length'
+    minuteHandLength:
+      type: float
+      label: 'Minute hand length'
+    majorTicksLength:
+      type: float
+      label: 'Major ticks length'
+    minorTicksLength:
+      type: float
+      label: 'Minor ticks length'
+    hourHandLength:
+      type: float
+      label: 'Hour hand length'
+    fontSize:
+      type: float
+      label: 'Font size'
+
+# Schema for Digital Clock Block
+block.block.*.settings.adc_block_digital_block:
+  type: mapping
+  label: 'Digital Clock block settings'
+  mapping:
+    num_places:
+      type: integer
+      label: 'Number of places'
+    layout:
+      type: string
+      label: 'Layout'
+    show_date:
+      type: boolean
+      label: 'Show date'
+    date_format:
+      type: string
+      label: 'Date format'
+    custom_date_format:
+      type: string
+      label: 'Custom date format'
+    timezone:
+      type: string
+      label: 'Timezone'
+    container_backgraound_color:
+      type: string
+      label: 'Container background color'
+    container_box_shadow_enable:
+      type: boolean
+      label: 'Container box shadow enable'
+    container_box_shadow:
+      type: string
+      label: 'Container box shadow'
+    time_color:
+      type: string
+      label: 'Time color'
+    date_color:
+      type: string
+      label: 'Date color'
+    description_color:
+      type: string
+      label: 'Description color'
+    time_text_shadow:
+      type: string
+      label: 'Time text shadow'
+    date_text_shadow:
+      type: string
+      label: 'Date text shadow'
+    description_text_shadow:
+      type: string
+      label: 'Description text shadow'
+    time_text_shadow_enable:
+      type: boolean
+      label: 'Time text shadow enable'
+    date_text_shadow_enable:
+      type: boolean
+      label: 'Date text shadow enable'
+    description_text_shadow_enable:
+      type: boolean
+      label: 'Description text shadow enable'
+    time_font_size:
+      type: float
+      label: 'Time font size'
+    date_font_size:
+      type: float
+      label: 'Date font size'
+    description_font_size:
+      type: float
+      label: 'Description font size'
+    description_text:
+      type: string
+      label: 'Description text'
+
+# Schema for SVG Blocks (Assumed based on your provided snippet)
+block.block.*.settings.adc_block_svg_block:
+  type: mapping
+  label: 'Analog Clock SVG block settings'
+  mapping:
+    num_places:
+      type: integer
+      label: 'Number of places'
+
+block.block.*.settings.adc_block_digital_svg_block:
+  type: mapping
+  label: 'Digital Clock SVG block settings'
+  mapping:
+    num_places:
+      type: integer
+      label: 'Number of places'

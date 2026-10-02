@@ -1,0 +1,7 @@
+users_export.form:
+  path: /admin/people/export
+  defaults:
+    _form: \Drupal\users_export\Form\UsersExportForm
+    _title: Export
+  requirements:
+    _permission: 'users export access export page'

@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a style on admin pages.
+ *
+ * Available variables:
+ * - label: Human-readable label of the style.
+ * - name: Machine name of the style.
+ * - path: (optional) System or external path to the CSS file.
+ *
+ * @see template_preprocess_styleswitcher_admin_item()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ label }}
+<small>{{ '(Machine name: @name)'|t({'@name': name}) }}</small>
+<div class="description">
+  {% if path %}
+    {{ path }}
+  {% else %}
+    {{ 'Blank style which just removes effect of others.'|t }}
+  {% endif %}
+</div>

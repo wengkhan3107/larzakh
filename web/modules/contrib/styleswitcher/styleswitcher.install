@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ * Installation and update tasks.
+ */
+
+/**
+ * Update configuration to match the fixed schema.
+ */
+function styleswitcher_update_8201() {
+  $factory = \Drupal::configFactory();
+
+  $config = $factory->getEditable('styleswitcher.custom_styles');
+
+  if ($data = $config->get()) {
+    // Iterate through the whole config data, find styles, and move them under
+    // an appropriate key.
+    foreach (array_keys($data) as $key) {
+      // The $key here is possibly a custom style name.
+      if (strpos($key, 'custom/') === 0) {
+        // Don't overwrite if exists.
+        if (!isset($data['styles'][$key])) {
+          $data['styles'][$key] = $data[$key];
+        }
+        unset($data[$key]);
+      }
+    }
+
+    $config->setData($data)->save(TRUE);
+  }
+
+  $config = $factory->getEditable('styleswitcher.styles_settings');
+
+  if ($data = $config->get()) {
+    // Iterate through the whole config data, find settings containing styles,
+    // and move them under an appropriate key.
+    foreach (array_keys($data) as $key) {
+      // The $key here is possibly a theme name.
+      if (is_array($data[$key]) && $data[$key]) {
+        $possibly_style_name = key($data[$key]);
+
+        if (strpos($possibly_style_name, 'custom/') === 0 || strpos($possibly_style_name, 'theme/') === 0) {
+          // Don't overwrite if exists.
+          if (!isset($data['settings'][$key])) {
+            $data['settings'][$key] = $data[$key];
+
+            // Convert weights from strings to integers.
+            foreach ($data['settings'][$key] as $style_name => $style_settings) {
+              $data['settings'][$key][$style_name]['weight'] = (int) $style_settings['weight'];
+            }
+          }
+          unset($data[$key]);
+        }
+      }
+    }
+
+    $config->setData($data)->save(TRUE);
+  }
+}

@@ -1,0 +1,149 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Drupal\Tests\og_ui\Functional;
+
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Url;
+use Drupal\Tests\BrowserTestBase;
+
+/**
+ * Test making a bundle a group and a group content.
+ *
+ * @group og
+ */
+class BundleEntityFormAlterTest extends BrowserTestBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  protected static $modules = ['block_content', 'entity_test', 'node', 'og_ui'];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * An administrator user.
+   *
+   * @var \Drupal\user\Entity\User
+   */
+  protected $adminUser;
+
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+
+    $this->entityTypeManager = \Drupal::entityTypeManager();
+    $available_perms = \Drupal::service('user.permissions')->getPermissions();
+    // Permission 'administer block types' was added in Drupal 10.
+    $block_perm = isset($available_perms['administer block types']) ? 'administer block types' : 'administer blocks';
+    // Log in as an administrator that can manage blocks and content types.
+    $this->adminUser = $this->drupalCreateUser([
+      $block_perm,
+      'administer content types',
+      'bypass node access',
+    ]);
+    $this->drupalLogin($this->adminUser);
+  }
+
+  /**
+   * Test that group and group content bundles can be created through the UI.
+   */
+  public function testCreate() {
+    // Create a custom block and define it as a group type. We make sure the
+    // group and group content are of different entity types so we can test that
+    // the correct entity type is referenced.
+    $edit = [
+      'label' => 'school',
+      'id' => 'school',
+      'og_is_group' => 1,
+    ];
+    $this->drupalGet(Url::fromRoute('block_content.type_add'));
+    $this->submitForm($edit, 'Save');
+
+    $edit = [
+      'name' => 'class',
+      'type' => 'class',
+      'og_group_content_bundle' => 1,
+      'og_target_type' => 'block_content',
+      'og_target_bundles[]' => ['school'],
+    ];
+    $this->drupalGet('admin/structure/types/add');
+    $this->submitForm($edit, new TranslatableMarkup('Save'));
+    $this->drupalGet('admin/structure/types/manage/class');
+    $this->assertTrue($this->assertSession()->optionExists('edit-og-target-bundles', 'school')->isSelected());
+    $this->assertTargetType('block_content', 'The target type is set to the "Custom Block" entity type.');
+    $this->assertTargetBundles(['school' => 'school'], 'The target bundles are set to the "school" bundle.');
+
+    // Test that if the target bundles are unselected, the value for the target
+    // bundles becomes NULL rather than an empty array. The entity reference
+    // selection plugin considers the value NULL to mean 'all bundles', while an
+    // empty array means 'no bundles are allowed'.
+    // @see \Drupal\Core\Entity\Plugin\EntityReferenceSelection\DefaultSelection::buildEntityQuery()
+    $edit = [
+      'name' => 'class',
+      'og_group_content_bundle' => 1,
+      'og_target_type' => 'block_content',
+      'og_target_bundles[]' => [],
+    ];
+    $this->drupalGet('admin/structure/types/manage/class');
+    $this->submitForm($edit, new TranslatableMarkup('Save'));
+    $this->assertTargetBundles(NULL, 'When the target bundle field is cleared from all values, it takes on the value NULL.');
+
+    // The altered fields should not appear on OG Membership types.
+    $some_admin = $this->drupalCreateUser([], 'some-admin', TRUE);
+    $this->drupalLogin($some_admin);
+    $this->drupalGet('admin/structure/membership-types/manage/default');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->fieldExists('name');
+    $this->assertSession()->fieldNotExists('og_is_group');
+    $this->assertSession()->fieldNotExists('og_group_content_bundle');
+  }
+
+  /**
+   * Checks whether the target bundles in the group content are as expected.
+   *
+   * @param array|null $expected
+   *   The expected value for the target bundles.
+   * @param string $message
+   *   The message to display with the assertion.
+   */
+  protected function assertTargetBundles($expected, $message) {
+    /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager */
+    $entity_field_manager = $this->container->get('entity_field.manager');
+    $entity_field_manager->clearCachedFieldDefinitions();
+    $field_definitions = $entity_field_manager->getFieldDefinitions('node', 'class');
+    $settings = $field_definitions['og_audience']->getSetting('handler_settings');
+    $this->assertEquals($expected, $settings['target_bundles'], $message);
+  }
+
+  /**
+   * Checks whether the target entity type in the group content is as expected.
+   *
+   * @param string $expected
+   *   The expected target entity type.
+   * @param string $message
+   *   The message to display with the assertion.
+   */
+  protected function assertTargetType($expected, $message) {
+    /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager */
+    $entity_field_manager = $this->container->get('entity_field.manager');
+    $entity_field_manager->clearCachedFieldDefinitions();
+    $field_definitions = $entity_field_manager->getFieldStorageDefinitions('node');
+    $setting = $field_definitions['og_audience']->getSetting('target_type');
+    $this->assertEquals($expected, $setting, $message);
+  }
+
+}

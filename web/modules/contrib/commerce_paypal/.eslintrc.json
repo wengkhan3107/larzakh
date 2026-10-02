@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "../../../core/.eslintrc.json"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2022
+  },
+  "globals": {
+    "paypal": true
+  }
+}

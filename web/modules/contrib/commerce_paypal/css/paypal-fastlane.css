@@ -1,0 +1,72 @@
+.commerce-checkout-flow-paypal-fastlane .layout-region-checkout-main fieldset.checkout-pane:not(.active, .pinned) .summary ~ *:not(.summary, button[data-checkout-button-type="edit"], button[data-checkout-button-type="change"]) {
+  display: none;
+}
+
+.commerce-checkout-flow-paypal-fastlane .layout-region-checkout-main fieldset.checkout-pane:not(.visited) .summary,
+.commerce-checkout-flow-paypal-fastlane .layout-region-checkout-main fieldset.checkout-pane.active .summary {
+  display: none;
+}
+
+.commerce-checkout-flow-paypal-fastlane:not(.member) .layout-region-checkout-main fieldset.checkout-pane .summary ~ button[data-checkout-button-type="change"] {
+  display: none;
+}
+
+.commerce-checkout-flow-paypal-fastlane .layout-region-checkout-main fieldset.checkout-pane.active .summary ~ button[data-checkout-button-type="edit"],
+.commerce-checkout-flow-paypal-fastlane .layout-region-checkout-main fieldset.checkout-pane:not(.visited, .active) .summary ~ button[data-checkout-button-type="edit"] {
+  display: none;
+}
+
+.commerce-checkout-flow-paypal-fastlane .layout-region-checkout-main fieldset.checkout-pane.pinned button[data-checkout-button-type="continue"] {
+  display: none;
+}
+
+.ui-dialog.fastlane-lookup-overlay .ui-dialog-titlebar {
+  display: none;
+  border-bottom: 1px solid #7f7f7f;
+}
+.ui-dialog.fastlane-lookup-overlay .ui-dialog-title {
+  text-align: left;
+}
+.ui-dialog.fastlane-lookup-overlay .ui-dialog-content {
+  padding: 2.5rem;
+  color: #333;
+  background-color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+.ui-dialog.fastlane-lookup-overlay .ui-dialog-content span {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  align-items: center;
+  justify-content: center;
+}
+.ui-dialog.fastlane-lookup-overlay .ui-dialog-content span::before {
+  display: block;
+  flex-shrink: 0;
+  width: 122px;
+  height: 108px;
+  margin: 0 auto;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath fill='%23F0AB00' d='M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z'/%3E%3C/svg%3E");
+}
+@media (min-width: 992px) {
+  .ui-dialog.fastlane-lookup-overlay .ui-dialog-titlebar {
+    padding: 0.25rem 2.5rem;
+  }
+  .ui-dialog.fastlane-lookup-overlay .ui-dialog-title {
+    font-size: 2.125rem;
+  }
+  .ui-dialog.fastlane-lookup-overlay .ui-dialog-content {
+    font-size: 1.5rem;
+  }
+  .ui-dialog.fastlane-lookup-overlay .ui-dialog-content span {
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-right: 90px;
+  }
+  .ui-dialog.fastlane-lookup-overlay .ui-dialog-titlebar-close {
+    top: 1.5rem;
+    right: 2.5rem;
+  }
+}

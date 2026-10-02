@@ -1,0 +1,14 @@
+birthday_wish_mail.settings_advanced:
+  type: config_object
+  label: 'birthday wish mail advanced settings'
+  mapping:
+    site:
+      label: 'Site'
+      type: mapping
+      mapping:
+        title:
+          label: 'Subject'
+          type: label
+        content:
+          label: 'Message'
+          type: text

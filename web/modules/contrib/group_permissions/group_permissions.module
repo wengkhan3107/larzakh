@@ -1,0 +1,133 @@
+<?php
+
+/**
+ * @file
+ * Hooks for handling group_permissions module features.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\group\Entity\GroupInterface;
+use Drupal\group\Entity\GroupTypeInterface;
+
+/**
+ * Implements hook_help().
+ */
+function group_permissions_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the group_permissions module.
+    case 'help.page.group_permissions':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('It is an extension of Drupal Group module. <br> Group permissions module allows overriding permissions per group.') . '</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<p>' . t('Drush en group_permissions') . '</p>';
+      $output .= '<p>' . t('Create a group') . '</p>';
+      $output .= '<p>' . t('Open group/1/permissions') . '</p>';
+      $output .= '<p>' . t('Choose "override" and set custom permissions') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function group_permissions_group_delete(GroupInterface $group) {
+  if ($group_permissions = \Drupal::service('group_permission.group_permissions_manager')->loadByGroup($group)) {
+    $group_permissions->delete();
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function group_permissions_user_cancel($edit, $account, $method) {
+  // Reassign all group permissions revisions to the super user.
+  if ($method === 'user_cancel_reassign') {
+    /** @var \Drupal\group_permissions\Entity\Storage\GroupPermissionStorageInterface $storage */
+    $storage = \Drupal::entityTypeManager()->getStorage('group_permission');
+
+    // Group permission ids created by the account.
+    $group_permissions_ids = $storage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('uid', $account->id())
+      ->execute();
+
+    // Prepare the revision ids for the group permissions created by the user.
+    // Consider also the case where the user is the owner of the group
+    // permission entity but the last revision is not its own anymore.
+    $revision_ids = array_unique(array_merge($storage->userRevisionIds($account), array_keys($group_permissions_ids)));
+    if ($revision_ids) {
+      batch_set(['operations' => [['_group_permissions_mass_reassign_to_super_user', [$revision_ids]]]]);
+    }
+  }
+}
+
+/**
+ * Implements callback_batch_operation().
+ *
+ * Mass reassigns ownership of group permissions revisions to the super user.
+ *
+ * @param int[] $ids
+ *   An array of group permissions revision IDs.
+ */
+function _group_permissions_mass_reassign_to_super_user(array $ids, &$context) {
+  if (!isset($context['sandbox']['progress'])) {
+    $context['sandbox']['progress'] = 0;
+    $context['sandbox']['max'] = count($ids);
+    $context['sandbox']['ids'] = $ids;
+  }
+
+  // Try to update 10 group permissions revisions at a time.
+  $ids = array_slice($context['sandbox']['ids'], $context['sandbox']['progress'], 10);
+
+  /** @var \Drupal\group_permissions\Entity\Storage\GroupPermissionStorageInterface $storage */
+  $storage = \Drupal::entityTypeManager()->getStorage('group_permission');
+
+  /** @var \Drupal\group_permissions\Entity\GroupPermissionInterface $group_permission_revision */
+  foreach ($storage->loadMultipleRevisions($ids) as $group_permission_revision) {
+    $group_permission_revision->set('uid', 1);
+    $group_permission_revision->set('revision_user', 1);
+    $group_permission_revision->validate();
+    $storage->save($group_permission_revision);
+    $context['sandbox']['progress']++;
+  }
+
+  if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function group_permissions_form_group_type_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\group\Entity\GroupTypeInterface $group_type */
+  $group_type = $form_state->getFormObject()->getEntity();
+  $form['group_permissions_enabled'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Enable group permissions'),
+    '#description' => t('If checked, privileged users will be able to set the permissions per group.'),
+    '#default_value' => $group_type->getThirdPartySetting('group_permissions', 'enabled', 0),
+    '#weight' => 1,
+  ];
+
+  $form['#entity_builders'][] = '_group_permissions_form_group_type_form_builder';
+}
+
+/**
+ * Form builder for the group type form.
+ *
+ * @param string $entity_type
+ *   Entity type.
+ * @param \Drupal\group\Entity\GroupTypeInterface $group_type
+ *   Group type.
+ * @param array $form
+ *   Form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state.
+ */
+function _group_permissions_form_group_type_form_builder($entity_type, GroupTypeInterface $group_type, &$form, FormStateInterface $form_state) {
+  $form_state->getValue('group_permissions_enabled') === 1
+    ? $group_type->setThirdPartySetting('group_permissions', 'enabled', 1)
+    : $group_type->unsetThirdPartySetting('group_permissions', 'enabled');
+}

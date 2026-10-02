@@ -1,0 +1,12 @@
+name: Views Birthday
+type: module
+description: Defines birthday filter and sort handlers for views
+package: Views
+core_version_requirement: ^8 || ^9 || ^10
+dependencies:
+  - drupal:datetime
+
+# Information added by Drupal.org packaging script on 2022-12-28
+version: '8.x-1.2'
+project: 'views_birthday'
+datestamp: 1672222270

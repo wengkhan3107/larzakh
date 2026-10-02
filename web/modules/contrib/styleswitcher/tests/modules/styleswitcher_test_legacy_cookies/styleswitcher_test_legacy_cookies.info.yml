@@ -1,0 +1,9 @@
+type: module
+name: 'Style Switcher Test Legacy Cookies'
+description: "Support module for testing Style Switcher cookie updates. It provides routes which set legacy Style Switcher cookies in a browser under test."
+package: Testing
+
+# Information added by Drupal.org packaging script on 2024-08-07
+version: '8.x-2.4'
+project: 'styleswitcher'
+datestamp: 1723042637

@@ -1,0 +1,135 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.campaign
+    - field.field.commerce_product.campaign.body
+    - field.field.commerce_product.campaign.field_campaign_category
+    - field.field.commerce_product.campaign.field_campaign_comment
+    - field.field.commerce_product.campaign.field_campaign_featured
+    - field.field.commerce_product.campaign.field_campaign_goal
+    - field.field.commerce_product.campaign.field_campaign_images
+    - field.field.commerce_product.campaign.field_campaign_start
+    - field.field.commerce_product.campaign.field_campaign_time
+    - field.field.commerce_product.campaign.field_campaign_update
+    - field.field.commerce_product.campaign.field_campaign_video
+  module:
+    - comment
+    - commerce_price
+    - commerce_product
+    - datetime
+    - entity_reference_revisions
+    - image
+    - text
+id: commerce_product.campaign.default
+targetEntityType: commerce_product
+bundle: campaign
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: -4
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_campaign_category:
+    weight: 11
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_campaign_comment:
+    weight: 19
+    label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+    region: content
+  field_campaign_featured:
+    weight: 12
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_campaign_goal:
+    weight: 13
+    label: hidden
+    settings:
+      strip_trailing_zeroes: false
+      currency_display: symbol
+    third_party_settings: {  }
+    type: commerce_price_default
+    region: content
+  field_campaign_images:
+    weight: 14
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_campaign_start:
+    weight: 15
+    label: hidden
+    settings:
+      strip_trailing_zeroes: false
+      currency_display: symbol
+    third_party_settings: {  }
+    type: commerce_price_default
+    region: content
+  field_campaign_time:
+    weight: 16
+    label: hidden
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_campaign_update:
+    type: entity_reference_revisions_entity_view
+    weight: 18
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_campaign_video:
+    weight: 17
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  title:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  variations:
+    type: commerce_add_to_cart
+    weight: 10
+    label: hidden
+    settings:
+      combine: true
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  stores: true
+  uid: true

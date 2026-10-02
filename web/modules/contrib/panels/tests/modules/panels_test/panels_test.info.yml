@@ -1,0 +1,13 @@
+type: module
+name: Panels Test
+description: 'Required for Panels simpletests only.'
+package: Testing
+dependencies:
+  - page_manager:page_manager
+  - panels:panels
+  - drupal:layout_discovery
+
+# Information added by Drupal.org packaging script on 2026-07-25
+version: '8.x-4.10'
+project: 'panels'
+datestamp: 1784960099

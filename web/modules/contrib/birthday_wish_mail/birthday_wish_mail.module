@@ -1,0 +1,180 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Birthday Wish Mail module.
+ */
+
+use Drupal\Core\Render\Markup;
+use Drupal\user\Entity\User;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Render\PlainTextOutput;
+
+/**
+ * Implements hook_help().
+ */
+function birthday_wish_mail_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.birthday_wish_mail':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t("Send birthday wish mail to the user automatically. When the user's birthday comes.") . '</p>';
+      $output .= '<h3>' . t('Configuration') . '</h3>';
+      $output .= '<ol>
+            <li>Install module "Birthday Wish Mail"</li>
+            <li>Go to the "Admin Configuration". Eg:- Admin Menu >> Configuration >> Birthday Wish Mail</li>
+            <li>Set machine name from user manage fields in "Date of birth" field . Eg:- "field_date_of_birth" etc.</li>
+            <li>Add mail "Subject" and "Message".</li>
+            <li>Click on Save configuration button.</li>
+        </ol>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function birthday_wish_mail_cron() {
+  // $token_service = \Drupal::token();
+  // Config factory data form birthday wish mail admin config.
+  $myConfigPage = \Drupal::configFactory()->getEditable('birthday_wish_mail.settings_advanced');
+  // Get current time in timestamp format.
+  $request_time = \Drupal::time()->getCurrentTime();
+  // Convert in "m-d" format.
+  $today = date("m-d", $request_time);
+  // Get DOB machine name form the admin config.
+  $date_machine_name = $myConfigPage->get('bwm_dob');
+  // Fetch user DOB and E-mail form the table. Using join query.
+  $database = \Drupal::database();
+  $query = $database->select('user__' . $date_machine_name, 'udob');
+  $query->fields('udob', [$date_machine_name . '_value']);
+  $query->fields('ufd', ['uid', 'preferred_langcode', 'name', 'mail']);
+  $query->join('users_field_data', 'ufd', 'ufd.uid = udob.entity_id');
+  $query->condition('udob.bundle', 'user');
+  $query->condition("udob." . $date_machine_name . "_value", '%' . $database->escapeLike($today) . '%', 'LIKE');
+  $query->condition("ufd.status", 1, '=');
+  $result = $query->execute()->fetchAll();
+  \Drupal::moduleHandler()->alter('birthday_wish_mail_users', $result);
+  $params = [];
+  foreach ($result as $value) {
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = 'birthday_wish_mail';
+    $key = 'send_birthday_wish_mail';
+    $to = $value->mail;
+    if (birthday_wish_mail_check($to) == 0) {
+      $langcode = $value->preferred_langcode;
+      $user_data_load = User::load($value->uid);
+      $params['account'] = $user_data_load;
+      $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, TRUE);
+
+      if ($result['result'] != TRUE) {
+        $message = t('There was a problem sending your birthday wish mail notification to @email.', ['@email' => $to]);
+        \Drupal::messenger()->addWarning($message);
+        \Drupal::logger('birthday_wish_mail')->error($message);
+        return;
+      }
+      // Insert sent mail into table.
+      // Convert in "m-d" format.
+      $today = date("m-d-Y", $request_time);
+      $result = $database->insert('birthday_wish_mail')
+        ->fields([
+          'mail' => $to,
+          'created' => $today,
+        ])
+        ->execute();
+      $message = t('A birthday wish mail notification has been sent to @email', ['@email' => $to]);
+      \Drupal::messenger()->addMessage($message);
+      \Drupal::logger('birthday_wish_mail')->notice($message);
+    }
+  }
+}
+
+/**
+ * Implements hook_mail().
+ *
+ * This hook defines a list of possible e-mail templates that this module can
+ * send. Each e-mail is given a unique identifier, or 'key'.
+ *
+ * $message comes in with some standard properties already set: 'to' address,
+ * 'from' address, and a set of default 'headers' from MailManager::mail(). The
+ * goal of hook_mail() is to set the message's 'subject' and 'body' properties,
+ * as well as make any adjustments to the headers that are necessary.
+ *
+ * The $params argument is an array which can hold any additional data required
+ * to build the mail subject and body; for example, user-entered form data, or
+ * some context information as to where the mail request came from.
+ *
+ * Note that hook_mail() is not actually a hook. It is only called for a single
+ * module, the module named in the first argument of MailManager::mail(). So
+ * it's a callback of a type, but not a hook.
+ */
+function birthday_wish_mail_mail($key, &$message, $params) {
+  switch ($key) {
+    // Send a simple message from the contact form.
+    case 'send_birthday_wish_mail':
+      $token_service = \Drupal::token();
+      $language_manager = \Drupal::languageManager();
+      $langcode = $message['langcode'];
+      $variables = ['user' => $params['account']];
+
+      $language = $language_manager->getLanguage($params['account']->getPreferredLangcode());
+      $language_manager->setConfigOverrideLanguage($language);
+      $mail_config = \Drupal::config('birthday_wish_mail.settings_advanced');
+
+      $token_options = [
+        'langcode' => $langcode,
+        'callback' => 'birthday_wish_mail_mail_tokens',
+        'clear' => TRUE,
+      ];
+      $message['subject'] .= PlainTextOutput::renderFromHtml($token_service->replace($mail_config->get('site_title'), $variables, $token_options));
+      $message['body'][] = Markup::create($token_service->replace($mail_config->get('site_value'), $variables, $token_options));
+      if ($mail_config->get('site_bcc')) {
+        $message['headers']['bcc'] = $mail_config->get('site_bcc');
+      }
+      break;
+  }
+}
+
+/**
+ * Token callback to add unsafe tokens for user mails.
+ *
+ * This function is used by \Drupal\Core\Utility\Token::replace() to set up
+ * some additional tokens that can be used in email messages generated by
+ * birthday_wish_mail_mail().
+ *
+ * @param array $replacements
+ *   An associative array variable containing mappings from token names to
+ *   values (for use with strtr()).
+ * @param array $data
+ *   An associative array of token replacement values. If the 'user' element
+ *   exists, it must contain a user account object with the following
+ *   properties:
+ *   - login: The UNIX timestamp of the user's last login.
+ *   - pass: The hashed account login password.
+ * @param array $options
+ *   A keyed array of settings and flags to control the token replacement
+ *   process. See \Drupal\Core\Utility\Token::replace().
+ */
+function birthday_wish_mail_mail_tokens(array $replacements, array $data, array $options) {
+  if (isset($data['user'])) {
+    $replacements['[user:one-time-login-url]'] = user_pass_reset_url($data['user'], $options);
+    $replacements['[user:cancel-url]'] = user_cancel_url($data['user'], $options);
+  }
+}
+
+/**
+ * Implements birhtday mail check in the table.
+ */
+function birthday_wish_mail_check($mail) {
+  // Get current time in timestamp format.
+  $request_time = \Drupal::time()->getCurrentTime();
+  // Convert in "m-d" format.
+  $today = date("m-d-Y", $request_time);
+  $database = \Drupal::database();
+  $query = $database->select('birthday_wish_mail', 'bwm');
+  $query->fields('bwm');
+  $query->condition('bwm.mail', $mail, '=');
+  $query->condition('bwm.created', $today, '=');
+  $result = $query->execute()->fetchAll();
+  return count($result);
+}

@@ -1,0 +1,5 @@
+services:
+  theme.negotiator.styleswitcher_test_theme_per_page.demo:
+    class: Drupal\styleswitcher_test_theme_per_page\Theme\ThemeNegotiator
+    tags:
+      - { name: theme_negotiator, priority: 1000 }

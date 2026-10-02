@@ -1,0 +1,11 @@
+user_activity_logger.logs:
+  route_name: user_activity_logger.logs
+  base_route: user_activity_logger.logs
+  title: 'Logs'
+  weight: 0
+
+user_activity_logger.settings:
+  route_name: user_activity_logger.settings
+  base_route: user_activity_logger.logs
+  title: 'Settings'
+  weight: 10

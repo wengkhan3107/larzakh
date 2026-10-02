@@ -1,0 +1,12 @@
+name: 'Analog Digital Clock'
+type: module
+description: 'Highly configurable SVG and CSS-based clock blocks. Includes multiple layouts for real-time Analog and Digital displays with custom timezones, colors, and font settings.'
+package: Analog Digital Clock
+core_version_requirement: ^9 || ^10 || ^11
+dependencies:
+  - drupal:block
+
+# Information added by Drupal.org packaging script on 2026-02-08
+version: '1.0.6'
+project: 'adc_block'
+datestamp: 1770552520

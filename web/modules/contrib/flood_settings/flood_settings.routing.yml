@@ -1,0 +1,7 @@
+flood_settings.settings:
+  path: '/admin/config/system/flood'
+  defaults:
+    _form: 'Drupal\flood_settings\Form\FloodSettings'
+    _title: 'Flood settings'
+  requirements:
+    _permission: 'manage flood settings'

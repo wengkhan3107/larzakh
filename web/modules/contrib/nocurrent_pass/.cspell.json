@@ -1,0 +1,16 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignoreWords": [
+    "Artemchuk",
+    "Bohdan",
+    "Czinege",
+    "Holovachek",
+    "Superadmin's",
+    "Viktor",
+    "Zahura",
+    "bohart",
+    "earthday",
+    "shkiper"
+  ]
+}

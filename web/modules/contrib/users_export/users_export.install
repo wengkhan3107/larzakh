@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Handles installation steps for users_export.
+ *
+ * @ingroup users_export
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_install().
+ */
+function users_export_install() {
+  \Drupal::messenger()->addStatus(t('You may export users by visiting <a href="@url" target="blank">@url</a>.', [
+    '@url' => Url::fromRoute('users_export.form')->toString(),
+  ]));
+}

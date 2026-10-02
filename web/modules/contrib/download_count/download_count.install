@@ -1,0 +1,163 @@
+<?php
+
+/**
+ * @file
+ * Installation code for the download_count module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function download_count_schema() {
+  $schema['download_count'] = [
+    'fields' => [
+      'dcid' => [
+        'description' => 'Primary Key: Unique download count id.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'fid' => [
+        'description' => 'The {file_managed}.fid of the file downloaded.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'uid' => [
+        'description' => 'The {user}.uid of user who downloaded the file.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'type' => [
+        'description' => 'The name of the entity type to which the file was attached when downloaded.',
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'id' => [
+        'description' => 'The primary key of the entity to which the file was attached when downloaded.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'ip_address' => [
+        'description' => 'The IP address of the downloading user.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+      ],
+      'referrer' => [
+        'description' => 'Referrer URI.',
+        'type' => 'text',
+        'not null' => TRUE,
+      ],
+      'timestamp' => [
+        'description' => 'The date-time the file was downloaded.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['dcid'],
+    'indexes' => [
+      'dc_fid' => ['fid'],
+      'dc_uid' => ['uid'],
+      'dc_type' => ['type'],
+      'dc_id' => ['id'],
+      'dc_ip' => ['ip_address'],
+      'dc_timestamp' => ['timestamp'],
+      'dc_fid_type_id' => ['fid', 'type', 'id'],
+    ],
+  ];
+
+  $schema['download_count_cache'] = [
+    'fields' => [
+      'dcc_id' => [
+        'description' => 'Primary Key: Unique download count cache id.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'fid' => [
+        'description' => 'The {file_managed}.fid of the file downloaded.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'type' => [
+        'description' => 'The name of the entity type to which the file was attached when downloaded.',
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'id' => [
+        'description' => 'The primary key of the entity to which the file was attached when downloaded.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'date' => [
+        'description' => 'The date the file was downloaded.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'count' => [
+        'description' => 'Number of times a file was downloaded in one day.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['dcc_id'],
+    'indexes' => [
+      'dcc_fid' => ['fid'],
+      'dcc_type' => ['type'],
+      'dcc_id' => ['id'],
+      'dcc_timestamp' => ['date'],
+      'dcc_fid_type_id' => ['fid', 'type', 'id', 'date'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function download_count_uninstall() {
+  \Drupal::state()->delete('download_count_last_cron');
+  \Drupal::service('config.factory')->getEditable('download_count.settings')->delete();
+  \Drupal::messenger()->addStatus(t('The download count module has been uninstalled.'));
+}
+
+/**
+ * Remove old download_count_last_cron config value.
+ */
+function download_count_update_8001() {
+  \Drupal::service('config.factory')->getEditable('download_count.settings.download_count_last_cron')->delete();
+}
+
+/**
+ * Remove unnecessary settings from configuration.
+ */
+function download_count_update_91001(&$sandbox) {
+  $config = \Drupal::configFactory()->getEditable('download_count.settings');
+  $raw = $config->getRawData();
+  unset($raw['download_count_sparklines']);
+  unset($raw['download_count_sparkline_min']);
+  unset($raw['download_count_sparkline_height']);
+  unset($raw['download_count_sparkline_width']);
+  $config->setData($raw);
+  $config->save();
+  return t('Please note the sparkline library is no longer used');
+}

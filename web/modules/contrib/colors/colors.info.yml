@@ -1,0 +1,12 @@
+name: Colors
+type: module
+description: API for coloring selectors
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: FullCalendar
+configure: admin/config/user-interface/colors
+
+# Information added by Drupal.org packaging script on 2020-04-20
+version: '8.x-1.0-beta1'
+project: 'colors'
+datestamp: 1587410369

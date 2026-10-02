@@ -1,0 +1,7 @@
+filter_settings.filter_insert_block:
+  type: filter
+  label: 'Insert Block Filter'
+  mapping:
+    check_roles:
+      type: boolean
+      label: 'Check roles permissions'

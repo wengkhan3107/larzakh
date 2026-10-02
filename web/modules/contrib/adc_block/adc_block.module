@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Stores and displays a list of recently visited pages on the site.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ *
+ * Provides definitions for drupal's help features.
+ */
+function adc_block_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.adc_block':
+      $output = '<p>' . t('Analog-Digital Clock is a simple module that displays analog and digital clock with predefined layout or custom configurations with timezone and custom text.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function adc_block_theme($existing, $type, $theme, $path) {
+  return [
+    'analog_clock' => [
+      'variables' => ['data' => NULL, 'content' => NULL],
+    ],
+    'digital_clock' => [
+      'variables' => ['data' => NULL],
+    ],
+    'svg_clock_analog_dynamic' => [
+      'variables' => [
+        'block_id' => NULL,
+        'config' => [],
+      ],
+    ],
+    'svg_clock_digital_dynamic' => [
+      'variables' => [
+        'block_id' => NULL,
+        'config' => [],
+      ],
+    ],
+  ];
+}

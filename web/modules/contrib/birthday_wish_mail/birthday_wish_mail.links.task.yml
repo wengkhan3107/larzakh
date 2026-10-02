@@ -1,0 +1,4 @@
+birthday_wish_mail.settings_advanced:
+  route_name: birthday_wish_mail.settings_advanced
+  title: Settings
+  base_route: birthday_wish_mail.settings_advanced

@@ -1,0 +1,20 @@
+styleswitcher_test_theme:
+  theme/green_text:
+    weight: '1'
+    status: true
+    is_default: false
+  custom/default:
+    weight: '-1'
+    status: true
+    is_default: true
+seven:
+  custom/default:
+    weight: '0'
+    status: false
+    is_default: false
+  custom/something:
+    weight: '1'
+    status: true
+    is_default: true
+_core:
+  default_config_hash: 9S7VqLfuCLdXcoAqzKdUlcVmE0t6lXqBEdJAG-zTikM

@@ -1,0 +1,9 @@
+{
+    "name": "drupal/remove_generator",
+    "description": "Enable to remove the Generator META tag. No configuration required!",
+    "type": "drupal-module",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://www.drupal.org/project/remove_generator",
+    "require": {}
+}

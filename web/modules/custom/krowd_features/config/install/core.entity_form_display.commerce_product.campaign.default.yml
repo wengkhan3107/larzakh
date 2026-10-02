@@ -1,0 +1,157 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.campaign
+    - field.field.commerce_product.campaign.body
+    - field.field.commerce_product.campaign.field_campaign_category
+    - field.field.commerce_product.campaign.field_campaign_comment
+    - field.field.commerce_product.campaign.field_campaign_featured
+    - field.field.commerce_product.campaign.field_campaign_goal
+    - field.field.commerce_product.campaign.field_campaign_images
+    - field.field.commerce_product.campaign.field_campaign_start
+    - field.field.commerce_product.campaign.field_campaign_time
+    - field.field.commerce_product.campaign.field_campaign_update
+    - field.field.commerce_product.campaign.field_campaign_video
+    - image.style.thumbnail
+  module:
+    - comment
+    - commerce
+    - commerce_price
+    - datetime
+    - image
+    - imce
+    - paragraphs
+    - path
+    - text
+id: commerce_product.campaign.default
+targetEntityType: commerce_product
+bundle: campaign
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_campaign_category:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_campaign_comment:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: comment_default
+    region: content
+  field_campaign_featured:
+    weight: 14
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_campaign_goal:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    type: commerce_price_default
+    region: content
+  field_campaign_images:
+    weight: 7
+    settings:
+      preview_image_style: thumbnail
+      progress_indicator: throbber
+    third_party_settings:
+      imce:
+        enabled: true
+    type: image_image
+    region: content
+  field_campaign_start:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: commerce_price_default
+    region: content
+  field_campaign_time:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_campaign_update:
+    type: entity_reference_paragraphs
+    weight: 15
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_campaign_video:
+    weight: 13
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  path:
+    type: path
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 6
+    region: content
+    third_party_settings: {  }
+  stores:
+    type: commerce_entity_select
+    weight: 0
+    settings:
+      hide_single_entity: true
+      autocomplete_threshold: 7
+      autocomplete_size: 60
+      autocomplete_placeholder: ''
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+hidden:
+  variations: true
