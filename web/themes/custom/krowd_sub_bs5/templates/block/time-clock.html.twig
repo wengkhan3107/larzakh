@@ -1,0 +1,65 @@
+{#
+/**
+ * @file
+ * A block content presentation for a region.
+ *
+ * Available variables:
+ * - data: The content for this region, typically blocks.
+ * - attributes: Remaining HTML attributes for the element, including:
+ *   - class: HTML classes that can be used to style contextually through CSS.
+ *
+ * @see template_preprocess_region()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% if data.timezone %}
+	{% 
+		set time_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+    			<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+  			</svg>'
+  %}
+  {% 
+		set date_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-fill" viewbox="0 0 16 16">
+						<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5"/>
+					</svg>'
+  %}
+	<div id="wrapper">
+		{% if data.date %}
+			<h4>
+			<div class="date-section">
+				{{ date_svg|raw }}
+				<span>
+					{{ data.date }}
+				</span>
+			</div>
+			<div class="time-section">
+				{{ time_svg|raw }}
+				<span id="dynamic_time">
+					{{ data.current_time }}
+				</span>
+			</div>
+				{# <span class="timeclock-date-section"> #}
+					
+					{# <span></span> #}
+				{# </span> #}
+				{# <br class="timeclock-divider"/> #}
+				{# <span class="timeclock-clock-section"> #}
+					
+					{# <span id="dynamic_time"></span> #}
+				{# </span> #}
+			</h4>
+		{% else %}
+			<h4>
+				{{ time_svg|raw }}
+				<span>
+					{{ data.current_time }}
+				</span>
+				{# <span id="dynamic_time"></span> #}
+			</h4>
+		{% endif %}
+	</div>
+{% else %}
+	<p>{{ 'Please go to the admin page eg- "Structure >> Block Layout" and enable the relevant block "Time Clock" in a region.'|t }}</p>
+{% endif %}
