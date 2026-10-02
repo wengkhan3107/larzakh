@@ -1,0 +1,11 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+login-styling:
+  version: 1.0
+  css:
+    theme:
+      css/login.css: {}
+  js:
+    js/login.js: {}

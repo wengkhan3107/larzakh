@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Krowd Sub Bootstrap 5 theme file.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+
+function krowd_sub_bs5_preprocess_html(array &$variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name === 'user.login' || $route_name === 'user.pass') {
+    $variables['#attached']['library'][] = 'krowd_sub_bs5/login-styling';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function krowd_sub_bs5_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name === 'user.login') {
+    $suggestions[] = 'page__user__login';
+  }
+  if ($route_name === 'user.pass') {
+    $suggestions[] = 'page__user__password';
+  }
+}
